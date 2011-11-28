@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 import java.util.Collections;
 
-import monitor.IBuild.BuildStatus;
-
 import util.FileTools;
 import util.SystemTools;
 import util.logger.ILogger;
@@ -61,28 +59,8 @@ public class BuildMonitor implements IBuildMonitor {
 	}
 	
 	@Override
-	public synchronized BuildStatus getStatus(){
-		if(builds.size() > 0){
-			for(IBuild build : builds){
-				if(build.getStatus() == BuildStatus.ERROR){
-					return BuildStatus.ERROR;
-				}else if(build.getStatus() == BuildStatus.UNKNOWN){
-					return BuildStatus.UNKNOWN;
-				}
-			}
-			return BuildStatus.OK;
-		}else{			
-			return BuildStatus.UNKNOWN;
-		}
-	}
-	
-	@Override
-	public synchronized ArrayList<BuildInfo> getBuildInfo(){
-		ArrayList<BuildInfo> infos = new ArrayList<BuildInfo>();
-		for(IBuild build : builds){
-			infos.add(new BuildInfo(build));
-		}
-		return infos;
+	public synchronized MonitorData getMonitorData(){
+		return new MonitorData(builds);
 	}
 
 	@Override
@@ -118,7 +96,7 @@ public class BuildMonitor implements IBuildMonitor {
 	}
 
 	@Override
-	public synchronized void updateStatus() throws Exception {
+	public synchronized void updateMonitor() throws Exception {
 		for(IBuild build : builds){
 			logger.log("update build: "+build.getIdentifier());
 			build.updateBuild(logger);
@@ -132,7 +110,7 @@ public class BuildMonitor implements IBuildMonitor {
 			active = true;
 			while(active){
 				try{
-					updateStatus();
+					updateMonitor();
 				}catch (Exception e){
 					logger.error(e);
 				}		

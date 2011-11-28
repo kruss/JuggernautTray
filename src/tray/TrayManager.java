@@ -13,8 +13,9 @@ import java.io.File;
 import java.util.ArrayList;
 
 import monitor.IBuildMonitor;
+import monitor.MonitorData;
 import monitor.IBuild.BuildStatus;
-import monitor.IBuildMonitor.BuildInfo;
+import monitor.MonitorData.BuildInfo;
 
 import core.Juggertray;
 
@@ -76,10 +77,20 @@ public class TrayManager implements ITrayManager, IChangeListener {
 	}
 
 	private void updateUI() throws Exception {
-		setIcon(getIconType4BuildStatus(monitor.getStatus()));
-		setMenu(monitor.getBuildInfo());
+		MonitorData data = monitor.getMonitorData();
+		setIcon(getIconType4BuildStatus(data.getStatus()));
+		setToolTip(data.getBuilds().size(), data.getBuilds(BuildStatus.OK).size());
+		setMenu(data.getBuilds());
 	}
 	
+	private void setIcon(IconType type) throws Exception {
+		if(icon != null){
+			icon.setImage(getIconImage(type));
+		}else{
+			createIcon(getIconImage(type));
+		}
+	}
+
 	private IconType getIconType4BuildStatus(BuildStatus status) {
 		if(status == BuildStatus.OK){
 			return IconType.HAPPY;
@@ -88,14 +99,6 @@ public class TrayManager implements ITrayManager, IChangeListener {
 		}else{
 			return IconType.SAD;
 		}
-	}
-	
-	private void setIcon(IconType type) throws Exception {
-	     if(icon != null){
-	    	 icon.setImage(getIconImage(type));
-	     }else{
-	    	 createIcon(getIconImage(type));
-	     }
 	}
 
 	private Image getIconImage(IconType type) throws Exception {
@@ -108,13 +111,13 @@ public class TrayManager implements ITrayManager, IChangeListener {
 	}
 	
 	private void createIcon(Image image) throws Exception {
-        icon = new TrayIcon(image, Juggertray.APP_NAME);
+        icon = new TrayIcon(image);
 		icon.setImageAutoSize(true);
 		icon.addActionListener(new TrayAction(logger, this){
 			@Override
 			protected void action(ActionEvent event) throws Exception {
 				if(SystemTools.isWindowsOS() || SystemTools.isLinuxOS()){ // on mac fired on single-click ;-(
-					monitor.updateStatus();
+					monitor.updateMonitor();
 				}
 			}
 		});
@@ -122,6 +125,14 @@ public class TrayManager implements ITrayManager, IChangeListener {
 		tray.add(icon);
 	}
 
+	private void setToolTip(int totalBuilds, int okBuilds) {
+		if(totalBuilds > 0){
+			icon.setToolTip(Juggertray.APP_NAME+" ("+okBuilds+" / "+totalBuilds+" OK)");
+		}else{
+			icon.setToolTip(Juggertray.APP_NAME+" ("+Juggertray.APP_VERSION+")");
+		}
+	}
+	
 	private void setMenu(ArrayList<BuildInfo> builds) {
 		PopupMenu popupMenu = new PopupMenu();
         
@@ -151,7 +162,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 				String identifier = UiTools.inputDialog("Add build (name@server)");
 				if(identifier != null && !identifier.isEmpty()){
 					monitor.addBuild(identifier);
-					monitor.updateStatus();
+					monitor.updateMonitor();
 				}
 			}
         });
@@ -175,7 +186,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
         	updateMenuItem.addActionListener(new TrayAction(logger, this){
     			@Override
     			protected void action(ActionEvent event) throws Exception {
-    				monitor.updateStatus();
+    				monitor.updateMonitor();
     			}
             });
         	setupMenu.add(updateMenuItem);
