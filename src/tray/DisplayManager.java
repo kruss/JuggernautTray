@@ -3,24 +3,18 @@ package tray;
 import java.awt.TrayIcon.MessageType;
 import java.util.ArrayList;
 
-import util.logger.ILogger;
-
 import monitor.MonitorData;
 import monitor.IBuild.BuildStatus;
 import monitor.MonitorData.BuildInfo;
 
 public class DisplayManager {
 
-	private ILogger logger;
 	private ITrayManager tray;
-	
 	private MonitorData data;
 	private boolean force;
 	
-	public DisplayManager(ILogger logger, ITrayManager tray) {
-		this.logger = logger;
+	public DisplayManager(ITrayManager tray) {
 		this.tray = tray;
-		
 		force = false;
 	}
 	
@@ -29,15 +23,16 @@ public class DisplayManager {
 	}
 
 	public void updateDisplay(MonitorData data) {
-		logger.info("update display");
 		
-		if(this.data == null){ // update after startup
+		if(this.data == null){ 
+			// update after startup
 			if(data.getBuilds().size() > 0){
 				displayStatusMessage("Status updated:", getMessages(new MonitorData(), data), getType(data));
 			}else{
 				displayEmptyMessage();
 			}
-		}else{ // update while running
+		}else{ 
+			// update while running
 			ArrayList<String> messages = getMessages(this.data, data); 
 			if(messages.size() > 0){
 				displayStatusMessage("Status updated:", messages, getType(data));
@@ -50,7 +45,6 @@ public class DisplayManager {
 				force = false;
 			}
 		}
-		
 		this.data = data;
 	}
 
@@ -59,7 +53,8 @@ public class DisplayManager {
 	}
 	
 	private void displayStatusMessage(String title, ArrayList<String> messages, MessageType type) {
-		tray.displayMessage(getInfo(title, messages), type);
+		String info = getInfo(title, messages);
+		tray.displayMessage(info, type);
 	}
 
 	private MessageType getType(MonitorData data) {

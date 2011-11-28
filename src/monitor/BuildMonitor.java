@@ -39,7 +39,7 @@ public class BuildMonitor implements IBuildMonitor {
 	public void init() throws Exception {
 		load();
 		if(thread == null){
-			logger.info("start monitor");
+			logger.debug("start monitor");
 			thread = new BuildMonitorThread();
 			thread.start();
 		}
@@ -48,7 +48,7 @@ public class BuildMonitor implements IBuildMonitor {
 	@Override
 	public void shutdown() throws Exception {
 		if(thread != null){
-			logger.info("stop monitor");
+			logger.debug("stop monitor");
 			thread.active = false;
 			thread.interrupt();
 			while(thread.isAlive()){
@@ -97,7 +97,12 @@ public class BuildMonitor implements IBuildMonitor {
 	public synchronized void updateMonitor() throws Exception {
 		for(IBuild build : builds){
 			logger.info("update build: "+build.getIdentifier());
-			build.updateBuild(logger);
+			try{
+				build.updateBuild(logger);
+			}catch(Exception e){
+				logger.warn("Could not update ["+build.getIdentifier()+"] => "+e.getClass().getSimpleName()+" \""+e.getMessage()+"\"");
+			}
+			logger.info("=> "+build.getIdentifier()+" ("+build.getStatus()+")");
 		}
 		notifier.notifyListeners();
 	}

@@ -62,32 +62,28 @@ public class Build implements IBuild {
 	}
 
 	@Override
-	public void updateBuild(ILogger logger) {
-		try{
-			status = BuildStatus.UNKNOWN;
-			String content = FileTools.readUrl(getBuildUrl());
-			for(String line : content.split("\n")){
-				if(
-						line.contains("UNDEFINED") || 
-						line.contains("PROCESSING") || 
-						line.contains("CANCEL")
-				){
-					break;
-				}else if(
-						line.contains("ERROR") || 
-						line.contains("FAILURE")
-				){
-					status = BuildStatus.ERROR;
-					break;
-				}else if(
-						line.contains("SUCCEED")
-				){
-					status = BuildStatus.OK;
-					break;
-				}
+	public void updateBuild(ILogger logger) throws Exception {
+		status = BuildStatus.UNKNOWN;
+		String content = FileTools.readUrl(getBuildUrl());
+		for(String line : content.split("\n")){
+			if(
+					line.contains("UNDEFINED") || 
+					line.contains("PROCESSING") || 
+					line.contains("CANCEL")
+			){
+				return;
+			}else if(
+					line.contains("ERROR") || 
+					line.contains("FAILURE")
+			){
+				status = BuildStatus.ERROR;
+				return;
+			}else if(
+					line.contains("SUCCEED")
+			){
+				status = BuildStatus.OK;
+				return;
 			}
-		}catch(Exception e){
-			logger.warn("Could not update ["+getIdentifier()+"] => "+e.getClass().getSimpleName()+" \""+e.getMessage()+"\"");
 		}
 	}
 }

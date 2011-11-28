@@ -43,7 +43,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 		this.parent = parent;
 		this.monitor = monitor;
 		
-		display = new DisplayManager(logger, this);
+		display = new DisplayManager(this);
 	}
 
 	@Override
