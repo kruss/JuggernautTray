@@ -174,7 +174,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
     			@Override
     			protected void action(ActionEvent event) throws Exception {
     				String identifier = UiTools.optionDialog("Remove build", monitor.getMonitorData().getIdentifiers());
-    				if(identifier != null && !identifier.isEmpty()){
+    				if(identifier != null && !identifier.isEmpty() && UiTools.confirmDialog("Remove build ["+identifier+"] ?")){
     					monitor.removeBuild(identifier);
     				}
     			}

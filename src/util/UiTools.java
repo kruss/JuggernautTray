@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import core.Juggertray;
-
 public class UiTools {
 
 	public static String inputDialog(String message){ 
@@ -27,7 +25,7 @@ public class UiTools {
 	}
 	
 	public static boolean confirmDialog(String message){
-		int input = JOptionPane.showConfirmDialog(null, message);
+		int input = JOptionPane.showConfirmDialog(null, message, "Confirm", JOptionPane.YES_NO_OPTION);
 		if(input == JOptionPane.YES_OPTION){
 			return true;
 		}else{
@@ -37,7 +35,7 @@ public class UiTools {
 	
 	public static String optionDialog(String message, ArrayList<String> values) {
 		String input = (String)JOptionPane.showInputDialog(
-				null, message, Juggertray.APP_NAME,
+				null, message, "Select",
 				JOptionPane.QUESTION_MESSAGE, null, 
 				values.toArray(new String[0]), null
 		);
