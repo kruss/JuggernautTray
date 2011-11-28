@@ -113,10 +113,11 @@ public class TrayManager implements ITrayManager, IChangeListener {
 		icon.setImageAutoSize(true);
 		icon.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) { // win & linux fired on double-click only
-            	if(SystemTools.isWindowsOS() && SystemTools.isLinuxOS()){
+            	if(SystemTools.isWindowsOS() || SystemTools.isLinuxOS()){
 	            	logger.log("update...");
 	        		try{
 						monitor.updateStatus();
+						displayMessage("Status updated", MessageType.INFO);
 					}catch (Exception ex){
 						logger.error(ex);
 						displayMessage(ex.getMessage(), MessageType.ERROR);
@@ -132,9 +133,8 @@ public class TrayManager implements ITrayManager, IChangeListener {
 		PopupMenu popupMenu = new PopupMenu();
         
         for(BuildInfo build : builds){
-        	final String indentifier = build.identifier;
-        	final String url = build.url;
-            MenuItem buildMenu = new MenuItem(indentifier+" ("+build.status.toString()+")");
+            MenuItem buildMenu = new MenuItem(getMenuLabel4BuildInfo(build));
+            final String url = build.url;
             buildMenu.addActionListener(new TrayAction(logger, this){
     			@Override
     			protected void action(ActionEvent event) throws Exception {
@@ -178,7 +178,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
         	setupMenu.add(removeMenuItem);
         	setupMenu.addSeparator();
         	
-        	MenuItem updateMenuItem = new MenuItem("Update status");	
+        	MenuItem updateMenuItem = new MenuItem("Update now");	
         	updateMenuItem.addActionListener(new TrayAction(logger, this){
     			@Override
     			protected void action(ActionEvent event) throws Exception {
@@ -198,5 +198,15 @@ public class TrayManager implements ITrayManager, IChangeListener {
         popupMenu.add(quitMenuItem);
         
         icon.setPopupMenu(popupMenu);
+	}
+	
+	private String getMenuLabel4BuildInfo(BuildInfo build) {
+		if(build.status == BuildStatus.OK){
+			return build.identifier+" ("+build.status.toString()+")";
+		}else if(build.status == BuildStatus.ERROR){
+			return "~ "+build.identifier+" ("+build.status.toString()+")";
+		}else{
+			return "~ "+build.identifier+" ("+build.status.toString()+")";
+		}
 	}
 }
