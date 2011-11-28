@@ -9,7 +9,7 @@ import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.TrayIcon.MessageType;
 import java.awt.event.ActionEvent;
-import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -107,11 +107,12 @@ public class TrayManager implements ITrayManager, IChangeListener {
 	}
 
 	private Image getIconImage(IconType type) throws Exception {
-		File file = new File("icon"+File.separator+type.toString().toLowerCase()+".gif");
-		if(file.exists()){
-			return Toolkit.getDefaultToolkit().getImage(file.getAbsolutePath());
+		String path = "icon/"+type.toString().toLowerCase()+".gif";
+		URL url = getClass().getResource(path);
+		if(url != null){
+			return Toolkit.getDefaultToolkit().getImage(url);
 		}else{
-			throw new Exception("Not a file: "+file.getAbsolutePath());
+			throw new Exception("No ressource at: "+path);
 		}
 	}
 	
