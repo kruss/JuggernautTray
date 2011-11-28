@@ -165,7 +165,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
         setupMenu.add(addMenuItem);
         
 		if(builds.size() > 0){
-        	MenuItem removeMenuItem = new MenuItem("Remove build");	  
+        	MenuItem removeMenuItem = new MenuItem("Remove build");	 
         	removeMenuItem.addActionListener(new TrayAction(logger, this){
     			@Override
     			protected void action(ActionEvent event) throws Exception {

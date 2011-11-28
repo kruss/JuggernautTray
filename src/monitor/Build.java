@@ -1,15 +1,23 @@
 package monitor;
 
+import util.FileTools;
+import util.logger.ILogger;
+
 public class Build implements IBuild {
 
-	private String buildName;
+	private String name;
+	private BuildStatus status;
 	private String serverUrl;
-	private BuildStatus buildStatus;
 
 	@Override
 	public String getName() {
-		return buildName;
+		return name;
 	}
+	
+	@Override
+	public BuildStatus getStatus() {
+		return status;
+	}	
 	
 	@Override
 	public String getServerUrl() {
@@ -19,38 +27,28 @@ public class Build implements IBuild {
 	@Override
 	public String getBuildUrl() {
 		if(serverUrl.startsWith("http://")){
-			return serverUrl+"/index["+buildName.hashCode()+"].htm";
+			return serverUrl+"/index["+name.hashCode()+"].htm";
 		}else{
-			return "http://"+serverUrl+"/index["+buildName.hashCode()+"].htm";
+			return "http://"+serverUrl+"/index["+name.hashCode()+"].htm";
 		}
-	}
-	
-	@Override
-	public BuildStatus getStatus() {
-		return buildStatus;
-	}	
-	
-	@Override
-	public void setStatus(BuildStatus status) {
-		this.buildStatus = status;
 	}
 
 	public Build(String identifier) throws Exception {
 		parseIdentifier(identifier);
-		buildStatus = BuildStatus.UNKNOWN;
+		status = BuildStatus.UNKNOWN;
 	}
 
 	@Override
 	public String getIdentifier(){
-		return buildName+"@"+serverUrl;
+		return name+"@"+serverUrl;
 	}
 	
 	private void parseIdentifier(String identifier) throws Exception {
 		int index = identifier.indexOf("@");
 		if(index != -1){
-			buildName = identifier.substring(0, index);
+			name = identifier.substring(0, index);
 			serverUrl = identifier.substring(index+1, identifier.length());
-			if(buildName.isEmpty() || serverUrl.isEmpty()){
+			if(name.isEmpty() || serverUrl.isEmpty()){
 				throw new Exception("invalid data: "+identifier);
 			}
 		}else{
@@ -61,5 +59,35 @@ public class Build implements IBuild {
 	@Override
 	public int compareTo(IBuild build) {
 		return this.getIdentifier().compareTo(build.getIdentifier());
+	}
+
+	@Override
+	public void updateBuild(ILogger logger) {
+		try{
+			status = BuildStatus.UNKNOWN;
+			String content = FileTools.readUrl(getBuildUrl());
+			for(String line : content.split("\n")){
+				if(
+						line.contains("UNDEFINED") || 
+						line.contains("PROCESSING") || 
+						line.contains("CANCEL")
+				){
+					break;
+				}else if(
+						line.contains("ERROR") || 
+						line.contains("FAILURE")
+				){
+					status = BuildStatus.ERROR;
+					break;
+				}else if(
+						line.contains("SUCCEED")
+				){
+					status = BuildStatus.OK;
+					break;
+				}
+			}
+		}catch(Exception e){
+			logger.warn("Could not update ["+getIdentifier()+"] => "+e.getClass().getSimpleName()+" \""+e.getMessage()+"\"");
+		}
 	}
 }

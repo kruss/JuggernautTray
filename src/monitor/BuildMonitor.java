@@ -120,42 +120,10 @@ public class BuildMonitor implements IBuildMonitor {
 	@Override
 	public synchronized void updateStatus() throws Exception {
 		for(IBuild build : builds){
-			logger.log("update: "+build.getIdentifier());
-			try{
-				build.setStatus(getStatus(build));
-			}catch(Exception e){
-				build.setStatus(BuildStatus.UNKNOWN);
-				logger.warn(
-						"Could update ["+build.getIdentifier()+"] => "+
-						e.getClass().getSimpleName()+" \""+e.getMessage()+"\""
-				);
-			}
+			logger.log("update build: "+build.getIdentifier());
+			build.updateBuild(logger);
 		}
 		notifier.notifyListeners();
-	}
-	
-	private BuildStatus getStatus(IBuild build) throws Exception {
-		String content = FileTools.readUrl(build.getBuildUrl());
-		logger.debug(content);
-		for(String line : content.split("\n")){
-			if(
-					line.contains("UNDEFINED") || 
-					line.contains("PROCESSING") || 
-					line.contains("CANCEL")
-			){
-				return BuildStatus.UNKNOWN;
-			}else if(
-					line.contains("ERROR") || 
-					line.contains("FAILURE")
-			){
-				return BuildStatus.ERROR;
-			}else if(
-					line.contains("SUCCEED")
-			){
-				return BuildStatus.OK;
-			}
-		}
-		return BuildStatus.UNKNOWN;
 	}
 
 	class BuildMonitorThread extends Thread {
