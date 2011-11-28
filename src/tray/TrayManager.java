@@ -116,7 +116,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 		icon.addActionListener(new TrayAction(logger, this){
 			@Override
 			protected void action(ActionEvent event) throws Exception {
-				if(SystemTools.isWindowsOS() || SystemTools.isLinuxOS()){ // on mac fired on single-click ;-(
+				if(SystemTools.isWindowsOS() || SystemTools.isLinuxOS()){
 					monitor.updateMonitor();
 				}
 			}
@@ -198,16 +198,17 @@ public class TrayManager implements ITrayManager, IChangeListener {
             });
         	setupMenu.add(editMenuItem);
         	
-        	setupMenu.addSeparator();
-        	
-        	MenuItem updateMenuItem = new MenuItem("Update");	
-        	updateMenuItem.addActionListener(new TrayAction(logger, this){
-    			@Override
-    			protected void action(ActionEvent event) throws Exception {
-    				monitor.updateMonitor();
-    			}
-            });
-        	setupMenu.add(updateMenuItem);
+        	if(SystemTools.isMacOS()){
+	        	setupMenu.addSeparator();
+	        	MenuItem updateMenuItem = new MenuItem("Update");	
+	        	updateMenuItem.addActionListener(new TrayAction(logger, this){
+	    			@Override
+	    			protected void action(ActionEvent event) throws Exception {
+	    				monitor.updateMonitor();
+	    			}
+	            });
+	        	setupMenu.add(updateMenuItem);
+        	}
 		}
         
         MenuItem quitMenuItem = new MenuItem("Quit");

@@ -20,8 +20,8 @@ public class Juggertray implements IComponent {
 	public static final String APP_NAME = "Juggertray";
 	public static final String APP_VERSION = "0.1.0";
 	
-	private static final String OUTPUT_FILE = "Juggertray.properties";
-	private static final int UPDATE_CYCLE = 60 * 1000; // 1 minute
+	private static final String OUTPUT_FILE = "Juggertray.dat";
+	private static final int UPDATE_CYCLE = 3 * 60 * 1000; // 3 minutes
 	
 	public static final int PROCESS_OK = 0;
 	public static final int PROCESS_NOT_OK = -1;
