@@ -11,6 +11,7 @@ import java.awt.TrayIcon.MessageType;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 
 import monitor.IBuildMonitor;
 import monitor.MonitorData;
@@ -132,9 +133,9 @@ public class TrayManager implements ITrayManager, IChangeListener {
 
 	private void setToolTip(int totalBuilds, int okBuilds) {
 		if(totalBuilds > 0){
-			icon.setToolTip(Juggertray.APP_NAME+" ("+okBuilds+" / "+totalBuilds+" OK)");
+			icon.setToolTip(Juggertray.APP_NAME+" "+okBuilds+" / "+totalBuilds+" OK ("+(new Date()).toString().substring(11, 16)+")");
 		}else{
-			icon.setToolTip(Juggertray.APP_NAME+" ("+Juggertray.APP_VERSION+")");
+			icon.setToolTip(Juggertray.APP_NAME+" (EMPTY)");
 		}
 	}
 	

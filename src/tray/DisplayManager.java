@@ -55,7 +55,7 @@ public class DisplayManager {
 	}
 
 	private void displayEmptyMessage() {
-		tray.displayMessage("Empty... Add some builds, first !", MessageType.WARNING);
+		tray.displayMessage("Add some builds !", MessageType.WARNING);
 	}
 	
 	private void displayStatusMessage(String title, ArrayList<String> messages, MessageType type) {
