@@ -41,6 +41,14 @@ public class MonitorData {
 		return builds;
 	}
 	
+	public ArrayList<String> getIdentifiers() {
+		ArrayList<String> names = new ArrayList<String>();
+		for(BuildInfo build : builds){
+			names.add(build.identifier);
+		}
+		return names;
+	}
+	
 	public BuildStatus getStatus(){
 		if(builds.size() > 0){
 			for(BuildInfo build : builds){

@@ -67,7 +67,6 @@ public class Juggertray implements IComponent {
 
 	@Override
 	public void shutdown() throws Exception {
-		logger.info("exit");
 		Collections.reverse(components);
 		for(IComponent component : components){
 			try{ 
@@ -76,6 +75,7 @@ public class Juggertray implements IComponent {
 				logger.error(e);
 			}
 		}
+		logger.info("exit");
 		System.exit(PROCESS_OK);
 	}
 }

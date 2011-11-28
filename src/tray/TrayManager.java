@@ -155,7 +155,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 		Menu setupMenu = new Menu("Setup");
 		popupMenu.add(setupMenu);
 		
-        MenuItem addMenuItem = new MenuItem("Add build");
+        MenuItem addMenuItem = new MenuItem("Add");
         addMenuItem.addActionListener(new TrayAction(logger, this){
 			@Override
 			protected void action(ActionEvent event) throws Exception {
@@ -169,20 +169,38 @@ public class TrayManager implements ITrayManager, IChangeListener {
         setupMenu.add(addMenuItem);
         
 		if(builds.size() > 0){
-        	MenuItem removeMenuItem = new MenuItem("Remove build");	 
+        	MenuItem removeMenuItem = new MenuItem("Remove");	 
         	removeMenuItem.addActionListener(new TrayAction(logger, this){
     			@Override
     			protected void action(ActionEvent event) throws Exception {
-    				String identifier = UiTools.inputDialog("Remove build (name@server)");
+    				String identifier = UiTools.optionDialog("Remove build", monitor.getMonitorData().getIdentifiers());
     				if(identifier != null && !identifier.isEmpty()){
     					monitor.removeBuild(identifier);
     				}
     			}
             });
         	setupMenu.add(removeMenuItem);
+        	
+        	MenuItem editMenuItem = new MenuItem("Edit");	 
+        	editMenuItem.addActionListener(new TrayAction(logger, this){
+    			@Override
+    			protected void action(ActionEvent event) throws Exception {
+    				String identifier1 = UiTools.optionDialog("Edit build", monitor.getMonitorData().getIdentifiers());
+    				if(identifier1 != null && !identifier1.isEmpty()){
+    					String identifier2 = UiTools.inputDialog("Edit build (name@server)", identifier1);
+    					if(identifier2 != null && !identifier2.isEmpty()){
+        					monitor.removeBuild(identifier1);
+        					monitor.addBuild(identifier2);
+    						monitor.updateMonitor();
+    					}
+    				}
+    			}
+            });
+        	setupMenu.add(editMenuItem);
+        	
         	setupMenu.addSeparator();
         	
-        	MenuItem updateMenuItem = new MenuItem("Update now");	
+        	MenuItem updateMenuItem = new MenuItem("Update");	
         	updateMenuItem.addActionListener(new TrayAction(logger, this){
     			@Override
     			protected void action(ActionEvent event) throws Exception {
