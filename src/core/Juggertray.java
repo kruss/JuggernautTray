@@ -15,20 +15,20 @@ import tray.TrayManager;
 import monitor.BuildMonitor;
 import monitor.IBuildMonitor;
 
-public class JuggernautTray implements IComponent {
+public class Juggertray implements IComponent {
 
-	public static final String APP_NAME = "JuggernautTray";
+	public static final String APP_NAME = "Juggertray";
 	public static final String APP_VERSION = "0.1.0";
 	
-	private static final String OUTPUT_FILE = "Juggernaut.tray";
-	private static final int UPDATE_CYCLE = 5 * 60 * 1000; // 5 minutes
+	private static final String OUTPUT_FILE = "Juggertray.properties";
+	private static final int UPDATE_CYCLE = 60 * 1000; // 1 minute
 	
 	public static final int PROCESS_OK = 0;
 	public static final int PROCESS_NOT_OK = -1;
 	
 	public static void main(String[] args) {
 		try {
-			JuggernautTray app = new JuggernautTray(args);
+			Juggertray app = new Juggertray(args);
 			app.init();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -40,7 +40,7 @@ public class JuggernautTray implements IComponent {
 	private ILogger logger;
 	private ArrayList<IComponent> components;
 	
-	public JuggernautTray(String[] args) throws Exception {
+	public Juggertray(String[] args) throws Exception {
 		options = new Options(args);
 		logger = new Logger(options.isVerboseMode());
 		components = new ArrayList<IComponent>();

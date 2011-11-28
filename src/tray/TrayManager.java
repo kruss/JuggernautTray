@@ -17,7 +17,7 @@ import monitor.IBuildMonitor;
 import monitor.IBuild.BuildStatus;
 import monitor.IBuildMonitor.BuildInfo;
 
-import core.JuggernautTray;
+import core.Juggertray;
 
 import util.IComponent;
 import util.SystemTools;
@@ -60,7 +60,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 	@Override
 	public void displayMessage(String message, MessageType type) {
 		if(icon != null){
-			icon.displayMessage(JuggernautTray.APP_NAME, message, type);
+			icon.displayMessage(Juggertray.APP_NAME, message, type);
 		}
 	}
 
@@ -109,7 +109,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 	}
 	
 	private void createIcon(Image image) throws Exception {
-        icon = new TrayIcon(image, JuggernautTray.APP_NAME);
+        icon = new TrayIcon(image, Juggertray.APP_NAME);
 		icon.setImageAutoSize(true);
 		icon.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) { // win & linux fired on double-click only
