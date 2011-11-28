@@ -1,4 +1,4 @@
-package util;
+package util.notify;
 
 public interface IChangeListener {
 

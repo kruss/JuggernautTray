@@ -1,38 +1,50 @@
 package util;
 
-import java.io.IOException;
-
 public class SystemTools {
 
 	public static String getWorkingDir(){
 		return System.getProperty("user.dir");
 	}
 	
-	public static boolean isWindows(){
-		return System.getProperty("os.name").toLowerCase().contains("windows");
+	public static String getOSName(){
+		return System.getProperty("os.name");
 	}
 	
-	public static boolean isLinux(){
-		return System.getProperty("os.name").toLowerCase().contains("linux");
+	public static boolean isWindowsOS(){
+		return getOSName().toLowerCase().contains("windows");
 	}
 	
-	public static void openBrowser(String url) throws IOException {
+	public static boolean isLinuxOS(){
+		return getOSName().toLowerCase().contains("linux");
+	}
+	
+	public static boolean isMacOS(){
+		return getOSName().toLowerCase().contains("mac");
+	}
+	
+	public static void openBrowser(String url) throws Exception {
 		
-		if(isWindows()){
+		if(isWindowsOS()){
 			openWindowsBrowser(url);
-		}else if(isLinux()){
+		}else if(isLinuxOS()){
 			openLinuxBrowser(url);
+		}else if(isMacOS()){
+			openMacBrowser(url);
 		}else{
-			throw new IOException("Could not open prowser for os: "+System.getProperty("os.name"));
+			throw new Exception("Unsuported OS: "+getOSName());
 		}
 	}
 	
-	private static void openWindowsBrowser(String target) throws IOException {
-		Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler \""+target+"\"");
+	private static void openWindowsBrowser(String path) throws Exception {
+		Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler \""+path+"\"");
 	}
 	
-	private static void openLinuxBrowser(String target) throws IOException {
-		Runtime.getRuntime().exec("firefox "+target);
+	private static void openLinuxBrowser(String path) throws Exception {
+		Runtime.getRuntime().exec("firefox "+path);
+	}
+	
+	private static void openMacBrowser(String path) throws Exception {
+		Runtime.getRuntime().exec("open file://"+path.replaceAll("\\s", "%20"));
 	}
 	
 	public static void sleep(long millis){

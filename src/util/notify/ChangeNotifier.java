@@ -1,33 +1,36 @@
-package util;
+package util.notify;
 
 import java.util.ArrayList;
 
-import core.Logger;
+import util.logger.ILogger;
 
-public class ChangeNotifier {
+public class ChangeNotifier implements IChangeNotifier {
 
-	private Logger logger;
+	private ILogger logger;
 	private Object parent;
 	private ArrayList<IChangeListener> listeners;
 	
-	public ChangeNotifier(Logger logger, Object parent){
+	public ChangeNotifier(ILogger logger, Object parent){
 		this.logger = logger;
 		this.parent = parent;
 		listeners = new ArrayList<IChangeListener>();
 	}
 	
+	@Override
 	public void addListener(IChangeListener listener) {
 		if(!listeners.contains(listener)){
 			listeners.add(listener);
 		}
 	}
 	
+	@Override
 	public void removeListener(IChangeListener listener) {
 		if(listeners.contains(listener)){
 			listeners.remove(listener);
 		}
 	}
 	
+	@Override
 	public void notifyListeners(){
 		for(IChangeListener listener : listeners){
 			try{
