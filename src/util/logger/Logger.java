@@ -1,5 +1,9 @@
 package util.logger;
 
+import java.util.Date;
+
+import util.StringTools;
+
 public class Logger implements ILogger {
 
 	private boolean verbose;
@@ -9,34 +13,38 @@ public class Logger implements ILogger {
 	}
 	
 	@Override
-	public void info(String message) {
+	public void emph(String message) {
 		System.out.println("\n\t[ "+message+" ]\n");
 	}
 
 	@Override
-	public void log(String message){
-		System.out.println(message);
+	public void info(String message){
+		print("INFO", message);
 	}
 	
 	@Override
 	public void debug(String message) {
 		if(verbose){
-			System.out.println("~> "+message);
+			print("DEBUG", message);
 		}
 	}
 	
 	@Override
 	public void warn(String message) {
-		System.out.println("WARN: "+message);
+		print("WARN", message);
 	}
 	
 	@Override
 	public void error(String message){
-		System.err.println("ERROR: "+message);
+		print("ERROR", message);
 	}
 	
 	@Override
 	public void error(Exception e){
-		e.printStackTrace();
+		print("ERROR", StringTools.trace(e));
+	}
+	
+	private void print(String level, String message){
+		System.out.println((new Date()).toString().substring(11, 19)+" <"+level+"> "+message);
 	}
 }

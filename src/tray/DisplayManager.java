@@ -29,7 +29,7 @@ public class DisplayManager {
 	}
 
 	public void updateDisplay(MonitorData data) {
-		logger.log("update display");
+		logger.info("update display");
 		
 		if(this.data == null){ // update after startup
 			if(data.getBuilds().size() > 0){

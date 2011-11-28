@@ -148,7 +148,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
             buildMenu.addActionListener(new TrayAction(logger, this){
     			@Override
     			protected void action(ActionEvent event) throws Exception {
-    				logger.log("open browser: "+url);
+    				logger.info("open browser: "+url);
     				SystemTools.openBrowser(url);
     			}
             });

@@ -39,7 +39,7 @@ public class BuildMonitor implements IBuildMonitor {
 	public void init() throws Exception {
 		load();
 		if(thread == null){
-			logger.log("start monitor");
+			logger.info("start monitor");
 			thread = new BuildMonitorThread();
 			thread.start();
 		}
@@ -48,7 +48,7 @@ public class BuildMonitor implements IBuildMonitor {
 	@Override
 	public void shutdown() throws Exception {
 		if(thread != null){
-			logger.log("stop monitor");
+			logger.info("stop monitor");
 			thread.active = false;
 			thread.interrupt();
 			while(thread.isAlive()){
@@ -66,7 +66,7 @@ public class BuildMonitor implements IBuildMonitor {
 	@Override
 	public synchronized void addBuild(String identifier) throws Exception {
 		if(getBuild(identifier) == null){
-			logger.log("add build: "+identifier);
+			logger.info("add build: "+identifier);
 			IBuild build = new Build(identifier);
 			builds.add(build);
 			Collections.sort(builds);
@@ -78,7 +78,7 @@ public class BuildMonitor implements IBuildMonitor {
 	public synchronized void removeBuild(String identifier) throws Exception {
 		IBuild build = getBuild(identifier);
 		if(build != null){
-			logger.log("remove build: "+build.getIdentifier());
+			logger.info("remove build: "+build.getIdentifier());
 			builds.remove(build);
 			save();
 		}
@@ -96,7 +96,7 @@ public class BuildMonitor implements IBuildMonitor {
 	@Override
 	public synchronized void updateMonitor() throws Exception {
 		for(IBuild build : builds){
-			logger.log("update build: "+build.getIdentifier());
+			logger.info("update build: "+build.getIdentifier());
 			build.updateBuild(logger);
 		}
 		notifier.notifyListeners();

@@ -59,7 +59,7 @@ public class Juggertray implements IComponent {
 
 	@Override
 	public void init() throws Exception {
-		logger.info(APP_NAME+" ("+APP_VERSION+")");
+		logger.emph(APP_NAME+" ("+APP_VERSION+")");
 		for(IComponent component : components){
 			component.init();
 		}
@@ -75,7 +75,7 @@ public class Juggertray implements IComponent {
 				logger.error(e);
 			}
 		}
-		logger.info("exit");
+		logger.emph("exit");
 		System.exit(PROCESS_OK);
 	}
 }

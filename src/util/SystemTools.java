@@ -1,7 +1,8 @@
 package util;
 
-public class SystemTools {
 
+public class SystemTools {
+	
 	public static String getWorkingDir(){
 		return System.getProperty("user.dir");
 	}
