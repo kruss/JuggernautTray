@@ -9,7 +9,6 @@ import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.TrayIcon.MessageType;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -111,19 +110,13 @@ public class TrayManager implements ITrayManager, IChangeListener {
 	private void createIcon(Image image) throws Exception {
         icon = new TrayIcon(image, Juggertray.APP_NAME);
 		icon.setImageAutoSize(true);
-		icon.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) { // win & linux fired on double-click only
-            	if(SystemTools.isWindowsOS() || SystemTools.isLinuxOS()){
-	            	logger.log("update...");
-	        		try{
-						monitor.updateStatus();
-						displayMessage("Status updated", MessageType.INFO);
-					}catch (Exception ex){
-						logger.error(ex);
-						displayMessage(ex.getMessage(), MessageType.ERROR);
-					}
-            	}
-            }
+		icon.addActionListener(new TrayAction(logger, this){
+			@Override
+			protected void action(ActionEvent event) throws Exception {
+				if(SystemTools.isWindowsOS() || SystemTools.isLinuxOS()){ // on mac fired on single-click ;-(
+					monitor.updateStatus();
+				}
+			}
 		});
 		SystemTray tray = SystemTray.getSystemTray();
 		tray.add(icon);

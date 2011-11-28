@@ -18,7 +18,11 @@ public abstract class TrayAction implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent event) {
-    	logger.log("=> menu ["+event.getActionCommand()+"]");
+		if(event.getActionCommand() != null){
+			logger.log("=> tray-action \""+event.getActionCommand()+"\"");
+		}else{
+			logger.log("=> tray-action");
+		}
     	try{
     		action(event);
 		}catch (Exception e){
