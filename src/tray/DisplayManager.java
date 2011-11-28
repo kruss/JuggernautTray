@@ -3,6 +3,8 @@ package tray;
 import java.awt.TrayIcon.MessageType;
 import java.util.ArrayList;
 
+import util.SystemTools;
+
 import monitor.MonitorData;
 import monitor.IBuild.BuildStatus;
 import monitor.MonitorData.BuildInfo;
@@ -27,7 +29,7 @@ public class DisplayManager {
 		if(this.data == null){ 
 			// update after startup
 			if(data.getBuilds().size() > 0){
-				displayStatusMessage("Status updated:", getMessages(new MonitorData(), data), getType(data));
+				displayStatusMessage(getMessages(new MonitorData(), data), getType(data));
 			}else{
 				displayEmptyMessage();
 			}
@@ -35,10 +37,10 @@ public class DisplayManager {
 			// update while running
 			ArrayList<String> messages = getMessages(this.data, data); 
 			if(messages.size() > 0){
-				displayStatusMessage("Status updated:", messages, getType(data));
+				displayStatusMessage(messages, getType(data));
 			}else if(force){
 				if(data.getBuilds().size() > 0){
-					displayStatusMessage("Current status:", getMessages(new MonitorData(), data), getType(data));
+					displayStatusMessage(getMessages(new MonitorData(), data), getType(data));
 				}else{
 					displayEmptyMessage();
 				}
@@ -52,9 +54,8 @@ public class DisplayManager {
 		tray.displayMessage("Add some builds !", MessageType.WARNING);
 	}
 	
-	private void displayStatusMessage(String title, ArrayList<String> messages, MessageType type) {
-		String info = getInfo(title, messages);
-		tray.displayMessage(info, type);
+	private void displayStatusMessage(ArrayList<String> messages, MessageType type) {
+		tray.displayMessage(getInfo("Status", messages), type);
 	}
 
 	private MessageType getType(MonitorData data) {
@@ -65,10 +66,11 @@ public class DisplayManager {
 		ArrayList<String> messages = new ArrayList<String>();
 		for(BuildInfo build2 : data2.getBuilds()){
 			BuildInfo build1 = data1.getBuild(build2.identifier);
+			String name = (SystemTools.isWindowsOS() ? build2.identifier : build2.name);
 			if(build1 == null){
-				messages.add(build2.identifier+" ("+build2.status+")");
+				messages.add(name+" ("+build2.status+")");
 			}else if(build1.status != build2.status){
-				messages.add(build2.identifier+" ("+build1.status+" >> "+build2.status+")");
+				messages.add(name+" ("+build1.status+" >> "+build2.status+")");
 			}
 		}
 		return messages;
@@ -76,9 +78,16 @@ public class DisplayManager {
 
 	private String getInfo(String title, ArrayList<String> messages) {
 		StringBuilder info = new StringBuilder();
-		info.append(title+"\n\n");
+		if(SystemTools.isWindowsOS()){
+			info.append(title+"\n\n");
+		}
 		for(String message : messages){
-			info.append(message+"\n");
+			info.append(message);
+			if(SystemTools.isWindowsOS()){
+				info.append("\n");
+			}else{
+				info.append(" ");
+			}
 		}
 		return info.toString();
 	}

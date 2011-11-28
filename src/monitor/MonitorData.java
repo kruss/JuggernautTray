@@ -8,11 +8,13 @@ public class MonitorData {
 	
 	public static class BuildInfo {
 		public String identifier;
+		public String name;
 		public String url;
 		public BuildStatus status;
 		
 		public BuildInfo(IBuild build){
 			identifier = build.getIdentifier();
+			name = build.getName();
 			url = build.getBuildUrl();
 			status = build.getStatus();
 		}
