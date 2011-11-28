@@ -71,7 +71,6 @@ public class BuildMonitor implements IBuildMonitor {
 			builds.add(build);
 			Collections.sort(builds);
 			save();
-			notifier.notifyListeners();
 		}
 	}
 	
@@ -82,7 +81,6 @@ public class BuildMonitor implements IBuildMonitor {
 			logger.log("remove build: "+build.getIdentifier());
 			builds.remove(build);
 			save();
-			notifier.notifyListeners();
 		}
 	}
 	

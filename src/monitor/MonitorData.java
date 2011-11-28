@@ -20,6 +20,10 @@ public class MonitorData {
 
 	private ArrayList<BuildInfo> builds;
 	
+	public MonitorData(){
+		this.builds = new ArrayList<BuildInfo>();
+	}
+	
 	public MonitorData(ArrayList<IBuild> builds){
 		this.builds = new ArrayList<BuildInfo>();
 		for(IBuild build : builds){
@@ -47,6 +51,15 @@ public class MonitorData {
 			names.add(build.identifier);
 		}
 		return names;
+	}
+	
+	public BuildInfo getBuild(String identifier) {
+		for(BuildInfo build : builds){
+			if(build.identifier.equals(identifier)){
+				return build;
+			}
+		}
+		return null;
 	}
 	
 	public BuildStatus getStatus(){
