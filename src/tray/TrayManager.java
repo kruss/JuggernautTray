@@ -142,7 +142,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 		PopupMenu popupMenu = new PopupMenu();
         
         for(BuildInfo build : builds){
-            MenuItem buildMenu = new MenuItem(getMenuLabel4BuildInfo(build));
+            MenuItem buildMenu = new MenuItem(build.identifier+" ("+build.status.toString()+")");
             final String url = build.url;
             buildMenu.addActionListener(new TrayAction(logger, this){
     			@Override
@@ -179,8 +179,9 @@ public class TrayManager implements ITrayManager, IChangeListener {
     			@Override
     			protected void action(ActionEvent event) throws Exception {
     				String identifier = UiTools.optionDialog("Remove build", monitor.getMonitorData().getIdentifiers());
-    				if(identifier != null && !identifier.isEmpty() && UiTools.confirmDialog("Remove build ["+identifier+"] ?")){
+    				if(identifier != null && !identifier.isEmpty() && UiTools.confirmDialog("Remove build [ "+identifier+" ] ?")){
     					monitor.removeBuild(identifier);
+    					monitor.updateMonitor();
     				}
     			}
             });
@@ -227,15 +228,5 @@ public class TrayManager implements ITrayManager, IChangeListener {
         popupMenu.add(quitMenuItem);
         
         icon.setPopupMenu(popupMenu);
-	}
-	
-	private String getMenuLabel4BuildInfo(BuildInfo build) {
-		if(build.status == BuildStatus.OK){
-			return build.identifier+" ("+build.status.toString()+")";
-		}else if(build.status == BuildStatus.ERROR){
-			return "~ "+build.identifier+" ("+build.status.toString()+")";
-		}else{
-			return "~ "+build.identifier+" ("+build.status.toString()+")";
-		}
 	}
 }
