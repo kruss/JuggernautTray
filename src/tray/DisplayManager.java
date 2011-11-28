@@ -43,7 +43,7 @@ public class DisplayManager {
 				displayStatusMessage("Status updated:", messages, getType(data));
 			}else if(force){
 				if(data.getBuilds().size() > 0){
-					displayStatusMessage("Nothing changed:", getMessages(new MonitorData(), data), getType(data));
+					displayStatusMessage("Current status:", getMessages(new MonitorData(), data), getType(data));
 				}else{
 					displayEmptyMessage();
 				}
