@@ -12,7 +12,7 @@ the smily will popup messages when build-status has changed and provides a conte
 once some builds are configured the gem will poll their status in a 3 minutes intervall.
 
 you can also double click the smily to imediatelly trigger a status update, 
-or open aq build's corresponding Juggernaut-website by clicking the build in the context-menu.
+or open a build's corresponding Juggernaut-website by clicking the build in the context-menu.
 
 Prerequisites
 =============
@@ -46,8 +46,8 @@ Setup
 
 a build is defined by a identifier of format <build-name>@<server-url> where:
 
-- server-url is the valid url of the main Juggernaut website, eg: <server-name>:<server-port> or http://<server-ip>:<server-port>
-- build-name is the case-sensitive (!) name of a build as shown on the Juggernaut website
+- "server-url" is the valid url of the main Juggernaut website, eg: <server-name>:<server-port> or http://<server-ip>:<server-port>
+- "build-name" is the case-sensitive (!) name of a build as shown on the Juggernaut website
 
 to add a build "right-click" the tray-icon and go "Setup" / "Add"
 
