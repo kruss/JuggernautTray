@@ -136,9 +136,6 @@ public class BuildMonitor implements IBuildMonitor {
 					}
 				}
 			}
-		}else{
-			logger.debug("create: "+file.getAbsolutePath());
-			FileTools.writeFile(file, "");
 		}
 	}
 	

@@ -60,6 +60,7 @@ public class Juggertray implements IComponent {
 	@Override
 	public void init() throws Exception {
 		logger.emph(APP_NAME+" ("+APP_VERSION+")");
+		logger.info("in: "+SystemTools.getWorkingDir());
 		for(IComponent component : components){
 			component.init();
 		}
