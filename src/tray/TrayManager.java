@@ -231,7 +231,6 @@ public class TrayManager implements ITrayManager, IChangeListener {
 	}
 	
 	private void triggerUpdate() throws Exception {
-		displayMessage("Update...", MessageType.INFO);
 		display.forceDisplay();
 		monitor.updateMonitor();
 	}
