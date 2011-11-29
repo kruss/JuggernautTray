@@ -1,3 +1,57 @@
 System-tray monitor for the Juggernaut
+======================================
 
-more to come....
+the gem creates a icon in your system-tray showing a smily that will change it's mood depending on the status of configured builds:
+
+- happy: all builds are ok
+- angry: some builds have errors
+- sad:   some builds are unreachable (eg: server down) or no build is configured
+
+the smily will popup messages when build-status has changed and provides a context-menu to add / edit / remove your builds.
+
+once some builds are configured the gem will poll their status in a 3 minutes intervall.
+
+you can also double click the smily to imediatelly trigger a status update, 
+or open aq build's corresponding Juggernaut-website by clicking the build in the context-menu.
+
+Prerequisites
+=============
+
+ruby + rake + gem
+java 6
+
+Installation
+============
+
+1) install the gem with command: gem install juggertray-<version>.gem
+
+2) run gem on startup automatically as background job:
+
+a) windows:
+
+create a vbs-script, eg: "juggertray.vbs" in any folder containing this lines:
+	
+	Set WshShell = CreateObject("WScript.Shell") 
+	WshShell.Run chr(34) & "juggertray" & Chr(34), 0
+	Set WshShell = Nothing
+
+add a shortcut to the vbs-script to your autostart-folder in "Documents and Setings / <user> / Startup"
+
+b) Linux
+
+TODO...
+
+Setup
+=====
+
+a build is defined by a identifier of format <build-name>@<server-url> where:
+
+- server-url is the valid url of the main Juggernaut website, eg: <server-name>:<server-port> or http://<server-ip>:<server-port>
+- build-name is the case-sensitive (!) name of a build as shown on the Juggernaut website
+
+to add a build "right-click" the tray-icon and go "Setup" / "Add"
+
+all configured builds are stored in a "Juggertray.dat" file in the gem's working-directory, 
+where you can also configure your builds by adding a build each line and restart the gem to apply changes, afterwards.
+
+
