@@ -29,7 +29,7 @@ Installation
 
 a) windows:
 
-create a vbs-script, eg: "juggertray.vbs" in any folder containing this lines:
+create a vbs-script, eg: "Juggertray.vbs" in any folder containing this lines:
 	
 	Set WshShell = CreateObject("WScript.Shell") 
 	WshShell.Run chr(34) & "juggertray" & Chr(34), 0
