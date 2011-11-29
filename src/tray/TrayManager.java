@@ -123,8 +123,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 			@Override
 			protected void action(ActionEvent event) throws Exception {
 				if(SystemTools.isWindowsOS() || SystemTools.isLinuxOS()){
-					display.forceDisplay();
-					monitor.updateMonitor();
+					triggerUpdate();
 				}
 			}
 		});
@@ -212,8 +211,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 	        	updateMenuItem.addActionListener(new TrayAction(logger, this){
 	    			@Override
 	    			protected void action(ActionEvent event) throws Exception {
-	    				display.forceDisplay();
-	    				monitor.updateMonitor();
+	    				triggerUpdate();
 	    			}
 	            });
 	        	setupMenu.add(updateMenuItem);
@@ -230,5 +228,11 @@ public class TrayManager implements ITrayManager, IChangeListener {
         popupMenu.add(quitMenuItem);
         
         icon.setPopupMenu(popupMenu);
+	}
+	
+	private void triggerUpdate() throws Exception {
+		displayMessage("Update...", MessageType.INFO);
+		display.forceDisplay();
+		monitor.updateMonitor();
 	}
 }
