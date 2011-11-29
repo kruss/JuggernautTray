@@ -27,20 +27,20 @@ public class DisplayManager {
 	public void updateDisplay(MonitorData data) {
 		
 		if(this.data == null){ 
-			// update after startup
+			// initial update
 			if(data.getBuilds().size() > 0){
-				displayStatusMessage(getMessages(new MonitorData(), data), getType(data));
+				displayStatusMessage(getStatusChanges(new MonitorData(), data), getMessageType(data));
 			}else{
 				displayEmptyMessage();
 			}
 		}else{ 
-			// update while running
-			ArrayList<String> messages = getMessages(this.data, data); 
+			// while running
+			ArrayList<String> messages = getStatusChanges(this.data, data); 
 			if(messages.size() > 0){
-				displayStatusMessage(messages, getType(data));
+				displayStatusMessage(messages, getMessageType(data));
 			}else if(force){
 				if(data.getBuilds().size() > 0){
-					displayStatusMessage(getMessages(new MonitorData(), data), getType(data));
+					displayStatusMessage(getStatusChanges(new MonitorData(), data), getMessageType(data));
 				}else{
 					displayEmptyMessage();
 				}
@@ -54,41 +54,32 @@ public class DisplayManager {
 		tray.displayMessage("Add some builds !", MessageType.WARNING);
 	}
 	
-	private void displayStatusMessage(ArrayList<String> messages, MessageType type) {
-		tray.displayMessage(getInfo("Status", messages), type);
+	private void displayStatusMessage(ArrayList<String> changes, MessageType type) {
+		StringBuilder message = new StringBuilder();
+		for(int i=0; i< changes.size(); i++){
+			message.append(changes.get(i));
+			if(i < changes.size()-1){		
+				message.append((SystemTools.isWindowsOS() ? "\n" : " "));
+			}
+		}
+		tray.displayMessage(message.toString(), type);
 	}
 
-	private MessageType getType(MonitorData data) {
+	private MessageType getMessageType(MonitorData data) {
 		return data.getStatus() == BuildStatus.OK ? MessageType.INFO : MessageType.ERROR;
 	}
 	
-	private ArrayList<String> getMessages(MonitorData data1, MonitorData data2) {
-		ArrayList<String> messages = new ArrayList<String>();
+	private ArrayList<String> getStatusChanges(MonitorData data1, MonitorData data2) {
+		ArrayList<String> changes = new ArrayList<String>();
 		for(BuildInfo build2 : data2.getBuilds()){
 			BuildInfo build1 = data1.getBuild(build2.identifier);
-			String name = (SystemTools.isWindowsOS() ? build2.identifier : build2.name);
+			String identifier = (SystemTools.isWindowsOS() ? build2.identifier : build2.name);
 			if(build1 == null){
-				messages.add(name+" ("+build2.status+")");
+				changes.add(identifier+" ("+build2.status+")");
 			}else if(build1.status != build2.status){
-				messages.add(name+" ("+build1.status+" >> "+build2.status+")");
+				changes.add(identifier+" ("+build1.status+" >> "+build2.status+")");
 			}
 		}
-		return messages;
-	}
-
-	private String getInfo(String title, ArrayList<String> messages) {
-		StringBuilder info = new StringBuilder();
-		if(SystemTools.isWindowsOS()){
-			info.append(title+"\n\n");
-		}
-		for(String message : messages){
-			info.append(message);
-			if(SystemTools.isWindowsOS()){
-				info.append("\n");
-			}else{
-				info.append(" ");
-			}
-		}
-		return info.toString();
+		return changes;
 	}
 }
