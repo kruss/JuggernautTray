@@ -35,7 +35,7 @@ create a vbs-script, eg: "juggertray.vbs" in any folder containing this lines:
 	WshShell.Run chr(34) & "juggertray" & Chr(34), 0
 	Set WshShell = Nothing
 
-add a shortcut to the vbs-script to your autostart-folder in "Documents and Setings / <user> / Startup"
+add a shortcut to the vbs-script to your autostart-folder in "Documents and Settings / <user> / Startup"
 
 b) Linux
 
