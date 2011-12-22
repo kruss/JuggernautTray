@@ -7,7 +7,6 @@ import java.awt.PopupMenu;
 import java.awt.SystemTray;
 import java.awt.Toolkit;
 import java.awt.TrayIcon;
-import java.awt.TrayIcon.MessageType;
 import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ArrayList;
@@ -63,8 +62,20 @@ public class TrayManager implements ITrayManager, IChangeListener {
 	
 	@Override
 	public void displayMessage(String message, MessageType type) {
-		if(icon != null){
-			icon.displayMessage(Juggertray.APP_NAME, message, type);
+		if(icon != null){;	
+			icon.displayMessage(Juggertray.APP_NAME, message, getIconMessageType(type));
+		}
+	}
+
+	private java.awt.TrayIcon.MessageType getIconMessageType(MessageType type) {
+		if(type == MessageType.INFO){
+			return java.awt.TrayIcon.MessageType.INFO;
+		}else if(type == MessageType.WARNING){
+			return java.awt.TrayIcon.MessageType.WARNING;
+		}else if(type == MessageType.ERROR){
+			return java.awt.TrayIcon.MessageType.ERROR;
+		}else{
+			return java.awt.TrayIcon.MessageType.NONE;
 		}
 	}
 

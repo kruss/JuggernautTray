@@ -1,17 +1,17 @@
 package tray;
 
-import java.awt.TrayIcon.MessageType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import tray.IMessageDisplay.MessageType;
 import util.logger.ILogger;
 
 public abstract class AbstractTrayAction implements ActionListener {
 
 	private ILogger logger;
-	private ITrayManager tray;
+	private IMessageDisplay tray;
 	
-	public AbstractTrayAction(ILogger logger, ITrayManager tray){
+	public AbstractTrayAction(ILogger logger, IMessageDisplay tray){
 		this.logger = logger;
 		this.tray = tray;
 	}

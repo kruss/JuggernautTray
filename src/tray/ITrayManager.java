@@ -1,10 +1,7 @@
 package tray;
 
-import java.awt.TrayIcon.MessageType;
-
 import util.IComponent;
 
-public interface ITrayManager extends IComponent {
+public interface ITrayManager extends IComponent, IMessageDisplay {
 
-	public void displayMessage(String message, MessageType type);
 }

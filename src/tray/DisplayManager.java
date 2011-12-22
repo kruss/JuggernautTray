@@ -1,8 +1,8 @@
 package tray;
 
-import java.awt.TrayIcon.MessageType;
 import java.util.ArrayList;
 
+import tray.IMessageDisplay.MessageType;
 import util.SystemTools;
 
 import monitor.MonitorData;
@@ -11,11 +11,11 @@ import monitor.MonitorData.BuildInfo;
 
 public class DisplayManager implements IDisplayManager {
 
-	private ITrayManager tray;
+	private IMessageDisplay tray;
 	private MonitorData data;
 	private boolean force;
 	
-	public DisplayManager(ITrayManager tray) {
+	public DisplayManager(IMessageDisplay tray) {
 		this.tray = tray;
 		force = false;
 	}
