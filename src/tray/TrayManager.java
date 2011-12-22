@@ -19,6 +19,8 @@ import monitor.MonitorInfo.BuildInfo;
 
 import core.Juggertray;
 
+import tray.display.INotificationManager;
+import tray.display.NotificationManager;
 import util.IComponent;
 import util.SystemTools;
 import util.UiTools;

@@ -3,7 +3,8 @@ package tray;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import tray.IMessageDisplay.MessageType;
+import tray.display.IMessageDisplay;
+import tray.display.IMessageDisplay.MessageType;
 import util.logger.ILogger;
 
 public abstract class AbstractTrayAction implements ActionListener {

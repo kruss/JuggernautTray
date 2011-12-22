@@ -1,4 +1,4 @@
-package tray;
+package tray.display;
 
 public interface IMessageDisplay {
 

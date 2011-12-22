@@ -1,8 +1,8 @@
-package tray;
+package tray.display;
 
 import java.util.ArrayList;
 
-import tray.IMessageDisplay.MessageType;
+import tray.display.IMessageDisplay.MessageType;
 import util.SystemTools;
 
 import monitor.MonitorInfo;
