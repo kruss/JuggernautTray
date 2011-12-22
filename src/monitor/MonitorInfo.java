@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import monitor.IBuild.BuildStatus;
 
-public class MonitorData {
+public class MonitorInfo {
 	
 	public static class BuildInfo {
 		public String identifier;
@@ -22,11 +22,11 @@ public class MonitorData {
 
 	private ArrayList<BuildInfo> builds;
 	
-	public MonitorData(){
+	public MonitorInfo(){
 		this.builds = new ArrayList<BuildInfo>();
 	}
 	
-	public MonitorData(ArrayList<IBuild> builds){
+	public MonitorInfo(ArrayList<IBuild> builds){
 		this.builds = new ArrayList<BuildInfo>();
 		for(IBuild build : builds){
 			this.builds.add(new BuildInfo(build));

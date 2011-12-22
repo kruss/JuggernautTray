@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import tray.IMessageDisplay.MessageType;
 import util.SystemTools;
 
-import monitor.MonitorData;
+import monitor.MonitorInfo;
 import monitor.IBuild.BuildStatus;
-import monitor.MonitorData.BuildInfo;
+import monitor.MonitorInfo.BuildInfo;
 
 public class NotificationManager implements INotificationManager {
 
 	private IMessageDisplay display;
-	private MonitorData data;
+	private MonitorInfo data;
 	private boolean force;
 	
 	public NotificationManager(IMessageDisplay display) {
@@ -26,12 +26,12 @@ public class NotificationManager implements INotificationManager {
 	}
 
 	@Override
-	public void updateStatus(MonitorData data) {
+	public void updateStatus(MonitorInfo data) {
 		
 		if(this.data == null){ 
 			// initial update
 			if(data.getBuilds().size() > 0){
-				displayStatusMessage(getStatusChanges(new MonitorData(), data), getMessageType(data));
+				displayStatusMessage(getStatusChanges(new MonitorInfo(), data), getMessageType(data));
 			}else{
 				displayEmptyMessage();
 			}
@@ -42,7 +42,7 @@ public class NotificationManager implements INotificationManager {
 				displayStatusMessage(messages, getMessageType(data));
 			}else if(force){
 				if(data.getBuilds().size() > 0){
-					displayStatusMessage(getStatusChanges(new MonitorData(), data), getMessageType(data));
+					displayStatusMessage(getStatusChanges(new MonitorInfo(), data), getMessageType(data));
 				}else{
 					displayEmptyMessage();
 				}
@@ -67,11 +67,11 @@ public class NotificationManager implements INotificationManager {
 		display.displayMessage(message.toString(), type);
 	}
 
-	private MessageType getMessageType(MonitorData data) {
+	private MessageType getMessageType(MonitorInfo data) {
 		return data.getStatus() == BuildStatus.OK ? MessageType.INFO : MessageType.ERROR;
 	}
 	
-	private ArrayList<String> getStatusChanges(MonitorData data1, MonitorData data2) {
+	private ArrayList<String> getStatusChanges(MonitorInfo data1, MonitorInfo data2) {
 		ArrayList<String> changes = new ArrayList<String>();
 		for(BuildInfo build2 : data2.getBuilds()){
 			BuildInfo build1 = data1.getBuild(build2.identifier);

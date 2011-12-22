@@ -59,8 +59,8 @@ public class BuildMonitor implements IBuildMonitor {
 	}
 	
 	@Override
-	public synchronized MonitorData getMonitorData(){
-		return new MonitorData(builds);
+	public synchronized MonitorInfo getMonitorInfo(){
+		return new MonitorInfo(builds);
 	}
 
 	@Override

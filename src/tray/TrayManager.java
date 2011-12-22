@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import monitor.IBuildMonitor;
-import monitor.MonitorData;
+import monitor.MonitorInfo;
 import monitor.IBuild.BuildStatus;
-import monitor.MonitorData.BuildInfo;
+import monitor.MonitorInfo.BuildInfo;
 
 import core.Juggertray;
 
@@ -93,7 +93,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 	}
 
 	private void updateUI() throws Exception {
-		MonitorData data = monitor.getMonitorData();
+		MonitorInfo data = monitor.getMonitorInfo();
 		setIcon(getIconType4BuildStatus(data.getStatus()));
 		setToolTip(data.getBuilds().size(), data.getBuilds(BuildStatus.OK).size());
 		setMenu(data.getBuilds());
@@ -191,7 +191,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
         	removeMenuItem.addActionListener(new AbstractTrayAction(logger, this){
     			@Override
     			protected void action(ActionEvent event) throws Exception {
-    				String identifier = UiTools.optionDialog("Remove build", monitor.getMonitorData().getIdentifiers());
+    				String identifier = UiTools.optionDialog("Remove build", monitor.getMonitorInfo().getIdentifiers());
     				if(identifier != null && !identifier.isEmpty() && UiTools.confirmDialog("Remove build [ "+identifier+" ] ?")){
     					monitor.removeBuild(identifier);
     					monitor.updateMonitor();
@@ -204,7 +204,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
         	editMenuItem.addActionListener(new AbstractTrayAction(logger, this){
     			@Override
     			protected void action(ActionEvent event) throws Exception {
-    				String identifier1 = UiTools.optionDialog("Edit build", monitor.getMonitorData().getIdentifiers());
+    				String identifier1 = UiTools.optionDialog("Edit build", monitor.getMonitorInfo().getIdentifiers());
     				if(identifier1 != null && !identifier1.isEmpty()){
     					String identifier2 = UiTools.inputDialog("Edit build (name@server)", identifier1);
     					if(identifier2 != null && !identifier2.isEmpty()){

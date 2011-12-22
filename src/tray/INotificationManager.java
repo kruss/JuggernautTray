@@ -1,9 +1,9 @@
 package tray;
 
-import monitor.MonitorData;
+import monitor.MonitorInfo;
 
 public interface INotificationManager {
 
-	public void updateStatus(MonitorData data);
+	public void updateStatus(MonitorInfo data);
 	public void forceNotification();
 }

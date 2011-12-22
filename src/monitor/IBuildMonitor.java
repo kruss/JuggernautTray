@@ -9,7 +9,7 @@ public interface IBuildMonitor extends IComponent {
 	public void removeBuild(String identifier) throws Exception;
 	
 	public void updateMonitor() throws Exception;
-	public MonitorData getMonitorData();
+	public MonitorInfo getMonitorInfo();
 
 	public IChangeNotifier getChangeNotifier();
 }
