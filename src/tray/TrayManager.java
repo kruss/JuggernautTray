@@ -34,7 +34,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 	private ILogger logger;
 	private IComponent parent;
 	private IBuildMonitor monitor;
-	private IDisplayManager display;
+	private INotificationManager notification;
 	private TrayIcon icon;
 	
 	public TrayManager(ILogger logger, IComponent parent, IBuildMonitor monitor) throws Exception {
@@ -42,7 +42,8 @@ public class TrayManager implements ITrayManager, IChangeListener {
 		this.parent = parent;
 		this.monitor = monitor;
 		
-		display = new DisplayManager(this);
+		notification = new NotificationManager(this);
+		icon = null;
 	}
 
 	@Override
@@ -96,7 +97,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 		setIcon(getIconType4BuildStatus(data.getStatus()));
 		setToolTip(data.getBuilds().size(), data.getBuilds(BuildStatus.OK).size());
 		setMenu(data.getBuilds());
-		display.updateDisplay(data);
+		notification.updateStatus(data);
 	}
 	
 	private void setIcon(IconType type) throws Exception {
@@ -242,7 +243,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 	}
 	
 	private void triggerUpdate() throws Exception {
-		display.forceDisplay();
+		notification.forceNotification();
 		monitor.updateMonitor();
 	}
 }

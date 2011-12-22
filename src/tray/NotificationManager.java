@@ -9,24 +9,24 @@ import monitor.MonitorData;
 import monitor.IBuild.BuildStatus;
 import monitor.MonitorData.BuildInfo;
 
-public class DisplayManager implements IDisplayManager {
+public class NotificationManager implements INotificationManager {
 
-	private IMessageDisplay tray;
+	private IMessageDisplay display;
 	private MonitorData data;
 	private boolean force;
 	
-	public DisplayManager(IMessageDisplay tray) {
-		this.tray = tray;
+	public NotificationManager(IMessageDisplay display) {
+		this.display = display;
 		force = false;
 	}
 	
 	@Override
-	public void forceDisplay(){
+	public void forceNotification(){
 		force = true;
 	}
 
 	@Override
-	public void updateDisplay(MonitorData data) {
+	public void updateStatus(MonitorData data) {
 		
 		if(this.data == null){ 
 			// initial update
@@ -53,7 +53,7 @@ public class DisplayManager implements IDisplayManager {
 	}
 
 	private void displayEmptyMessage() {
-		tray.displayMessage("Add some builds !", MessageType.WARNING);
+		display.displayMessage("Add some builds !", MessageType.WARNING);
 	}
 	
 	private void displayStatusMessage(ArrayList<String> changes, MessageType type) {
@@ -64,7 +64,7 @@ public class DisplayManager implements IDisplayManager {
 				message.append((SystemTools.isWindowsOS() ? "\n" : " "));
 			}
 		}
-		tray.displayMessage(message.toString(), type);
+		display.displayMessage(message.toString(), type);
 	}
 
 	private MessageType getMessageType(MonitorData data) {
