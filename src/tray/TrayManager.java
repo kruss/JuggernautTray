@@ -35,8 +35,8 @@ public class TrayManager implements ITrayManager, IChangeListener {
 	private ILogger logger;
 	private IComponent parent;
 	private IBuildMonitor monitor;
+	private IDisplayManager display;
 	private TrayIcon icon;
-	private DisplayManager display;
 	
 	public TrayManager(ILogger logger, IComponent parent, IBuildMonitor monitor) throws Exception {
 		this.logger = logger;
@@ -119,7 +119,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 	private void createIcon(Image image) throws Exception {
         icon = new TrayIcon(image);
 		icon.setImageAutoSize(true);
-		icon.addActionListener(new TrayAction(logger, this){
+		icon.addActionListener(new AbstractTrayAction(logger, this){
 			@Override
 			protected void action(ActionEvent event) throws Exception {
 				if(SystemTools.isWindowsOS() || SystemTools.isLinuxOS()){
@@ -145,7 +145,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
         for(BuildInfo build : builds){
             MenuItem buildMenu = new MenuItem(build.identifier+" ("+build.status.toString()+")");
             final String url = build.url;
-            buildMenu.addActionListener(new TrayAction(logger, this){
+            buildMenu.addActionListener(new AbstractTrayAction(logger, this){
     			@Override
     			protected void action(ActionEvent event) throws Exception {
     				logger.info("open browser: "+url);
@@ -162,7 +162,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 		popupMenu.add(setupMenu);
 		
         MenuItem addMenuItem = new MenuItem("Add");
-        addMenuItem.addActionListener(new TrayAction(logger, this){
+        addMenuItem.addActionListener(new AbstractTrayAction(logger, this){
 			@Override
 			protected void action(ActionEvent event) throws Exception {
 				String identifier = UiTools.inputDialog("Add build (name@server)");
@@ -176,7 +176,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
         
 		if(builds.size() > 0){
         	MenuItem removeMenuItem = new MenuItem("Remove");	 
-        	removeMenuItem.addActionListener(new TrayAction(logger, this){
+        	removeMenuItem.addActionListener(new AbstractTrayAction(logger, this){
     			@Override
     			protected void action(ActionEvent event) throws Exception {
     				String identifier = UiTools.optionDialog("Remove build", monitor.getMonitorData().getIdentifiers());
@@ -189,7 +189,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
         	setupMenu.add(removeMenuItem);
         	
         	MenuItem editMenuItem = new MenuItem("Edit");	 
-        	editMenuItem.addActionListener(new TrayAction(logger, this){
+        	editMenuItem.addActionListener(new AbstractTrayAction(logger, this){
     			@Override
     			protected void action(ActionEvent event) throws Exception {
     				String identifier1 = UiTools.optionDialog("Edit build", monitor.getMonitorData().getIdentifiers());
@@ -208,7 +208,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
         	if(SystemTools.isMacOS()){
 	        	setupMenu.addSeparator();
 	        	MenuItem updateMenuItem = new MenuItem("Update");	
-	        	updateMenuItem.addActionListener(new TrayAction(logger, this){
+	        	updateMenuItem.addActionListener(new AbstractTrayAction(logger, this){
 	    			@Override
 	    			protected void action(ActionEvent event) throws Exception {
 	    				triggerUpdate();
@@ -219,7 +219,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 		}
         
         MenuItem quitMenuItem = new MenuItem("Quit");
-        quitMenuItem.addActionListener(new TrayAction(logger, this){
+        quitMenuItem.addActionListener(new AbstractTrayAction(logger, this){
 			@Override
 			protected void action(ActionEvent event) throws Exception {
 				parent.shutdown();

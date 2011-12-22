@@ -9,7 +9,7 @@ import monitor.MonitorData;
 import monitor.IBuild.BuildStatus;
 import monitor.MonitorData.BuildInfo;
 
-public class DisplayManager {
+public class DisplayManager implements IDisplayManager {
 
 	private ITrayManager tray;
 	private MonitorData data;
@@ -20,10 +20,12 @@ public class DisplayManager {
 		force = false;
 	}
 	
+	@Override
 	public void forceDisplay(){
 		force = true;
 	}
 
+	@Override
 	public void updateDisplay(MonitorData data) {
 		
 		if(this.data == null){ 

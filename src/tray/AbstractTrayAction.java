@@ -6,12 +6,12 @@ import java.awt.event.ActionListener;
 
 import util.logger.ILogger;
 
-public abstract class TrayAction implements ActionListener {
+public abstract class AbstractTrayAction implements ActionListener {
 
 	private ILogger logger;
 	private ITrayManager tray;
 	
-	public TrayAction(ILogger logger, ITrayManager tray){
+	public AbstractTrayAction(ILogger logger, ITrayManager tray){
 		this.logger = logger;
 		this.tray = tray;
 	}
