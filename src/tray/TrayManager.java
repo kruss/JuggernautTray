@@ -38,6 +38,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 	private IBuildMonitor monitor;
 	private INotificationManager notification;
 	private TrayIcon icon;
+	private boolean trigger;
 	
 	public TrayManager(ILogger logger, IComponent parent, IBuildMonitor monitor) throws Exception {
 		this.logger = logger;
@@ -46,6 +47,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 		
 		notification = new NotificationManager(this);
 		icon = null;
+		trigger = false;
 	}
 
 	@Override
@@ -99,7 +101,8 @@ public class TrayManager implements ITrayManager, IChangeListener {
 		setIcon(getIconType4BuildStatus(data.getStatus()));
 		setToolTip(data.getBuilds().size(), data.getBuilds(BuildStatus.OK).size());
 		setMenu(data.getBuilds());
-		notification.updateStatus(data);
+		notification.updateStatus(data, trigger);
+		trigger = false;
 	}
 	
 	private void setIcon(IconType type) throws Exception {
@@ -245,7 +248,12 @@ public class TrayManager implements ITrayManager, IChangeListener {
 	}
 	
 	private void triggerUpdate() throws Exception {
-		notification.forceNotification();
+		trigger = true;
 		monitor.updateMonitor();
+	}
+
+	@Override
+	public boolean supportNewline() {
+		return SystemTools.isWindowsOS();
 	}
 }

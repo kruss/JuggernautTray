@@ -3,7 +3,6 @@ package tray.display;
 import java.util.ArrayList;
 
 import tray.display.IMessageDisplay.MessageType;
-import util.SystemTools;
 
 import monitor.MonitorInfo;
 import monitor.IBuild.BuildStatus;
@@ -13,36 +12,29 @@ public class NotificationManager implements INotificationManager {
 
 	private IMessageDisplay display;
 	private MonitorInfo data;
-	private boolean force;
 	
 	public NotificationManager(IMessageDisplay display) {
 		this.display = display;
-		force = false;
-	}
-	
-	@Override
-	public void forceNotification(){
-		force = true;
 	}
 
 	@Override
-	public void updateStatus(MonitorInfo data) {
-		
+	public void updateStatus(MonitorInfo data, boolean force) {
+		ArrayList<String> rawMessages = getStatusMessages(new MonitorInfo(), data);
 		if(this.data == null){ 
 			// initial update
 			if(data.getBuilds().size() > 0){
-				displayStatusMessage(getStatusChanges(new MonitorInfo(), data), getMessageType(data));
+				displayStatusMessage(rawMessages, getMessageType(data));
 			}else{
 				displayEmptyMessage();
 			}
 		}else{ 
 			// while running
-			ArrayList<String> messages = getStatusChanges(this.data, data); 
+			ArrayList<String> messages = getStatusMessages(this.data, data); 
 			if(messages.size() > 0){
 				displayStatusMessage(messages, getMessageType(data));
 			}else if(force){
 				if(data.getBuilds().size() > 0){
-					displayStatusMessage(getStatusChanges(new MonitorInfo(), data), getMessageType(data));
+					displayStatusMessage(rawMessages, getMessageType(data));
 				}else{
 					displayEmptyMessage();
 				}
@@ -56,12 +48,12 @@ public class NotificationManager implements INotificationManager {
 		display.displayMessage("Add some builds !", MessageType.WARNING);
 	}
 	
-	private void displayStatusMessage(ArrayList<String> changes, MessageType type) {
+	private void displayStatusMessage(ArrayList<String> messages, MessageType type) {
 		StringBuilder message = new StringBuilder();
-		for(int i=0; i< changes.size(); i++){
-			message.append(changes.get(i));
-			if(i < changes.size()-1){		
-				message.append((SystemTools.isWindowsOS() ? "\n" : " "));
+		for(int i=0; i< messages.size(); i++){
+			message.append(messages.get(i));
+			if(i < messages.size()-1){		
+				message.append((display.supportNewline() ? "\n" : ", "));
 			}
 		}
 		display.displayMessage(message.toString(), type);
@@ -71,17 +63,23 @@ public class NotificationManager implements INotificationManager {
 		return data.getStatus() == BuildStatus.OK ? MessageType.INFO : MessageType.ERROR;
 	}
 	
-	private ArrayList<String> getStatusChanges(MonitorInfo data1, MonitorInfo data2) {
-		ArrayList<String> changes = new ArrayList<String>();
-		for(BuildInfo build2 : data2.getBuilds()){
-			BuildInfo build1 = data1.getBuild(build2.identifier);
-			String identifier = (SystemTools.isWindowsOS() ? build2.identifier : build2.name);
-			if(build1 == null){
-				changes.add(identifier+" ("+build2.status+")");
-			}else if(build1.status != build2.status){
-				changes.add(identifier+" ("+build1.status+" >> "+build2.status+")");
+	private ArrayList<String> getStatusMessages(MonitorInfo oldData, MonitorInfo newData) {
+		ArrayList<String> messages = new ArrayList<String>();
+		StatusAnalyzer analyzer = new StatusAnalyzer(oldData, newData);
+		for(StatusAnalyzer.StatusChange change : analyzer.getChanges()){
+			BuildInfo build = newData.getBuild(change.identifier);
+			if(build != null){
+				if(display.supportNewline()){
+					if(change.oldStatus != null){
+						messages.add(build.identifier+" ("+change.oldStatus+" >> "+change.newStatus+")");
+					}else{
+						messages.add(build.identifier+" ("+change.newStatus+")");
+					}
+				}else{
+					messages.add(build.name+"::"+change.newStatus);
+				}
 			}
 		}
-		return changes;
+		return messages;
 	}
 }

@@ -9,4 +9,5 @@ public interface IMessageDisplay {
 	}
 	
 	public void displayMessage(String message, MessageType type);
+	public boolean supportNewline();
 }
