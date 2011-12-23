@@ -3,8 +3,8 @@ package tray.display;
 import java.util.ArrayList;
 
 import monitor.MonitorInfo;
-import monitor.IBuild.BuildStatus;
 import monitor.MonitorInfo.BuildInfo;
+import monitor.build.IBuild.BuildStatus;
 
 public class StatusAnalyzer {
 

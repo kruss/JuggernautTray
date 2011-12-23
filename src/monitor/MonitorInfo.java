@@ -2,19 +2,18 @@ package monitor;
 
 import java.util.ArrayList;
 
-import monitor.IBuild.BuildStatus;
+import monitor.build.IBuild;
+import monitor.build.IBuild.BuildStatus;
 
 public class MonitorInfo {
 	
 	public static class BuildInfo {
 		public String identifier;
-		public String name;
 		public String url;
 		public BuildStatus status;
 		
 		public BuildInfo(IBuild build){
-			identifier = build.getIdentifier();
-			name = build.getName();
+			identifier = build.getMeta().identifier;
 			url = build.getBuildUrl();
 			status = build.getStatus();
 		}

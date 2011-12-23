@@ -3,17 +3,19 @@ package tray.display;
 import java.util.ArrayList;
 
 import tray.display.IMessageDisplay.MessageType;
+import util.logger.ILogger;
 
 import monitor.MonitorInfo;
-import monitor.IBuild.BuildStatus;
-import monitor.MonitorInfo.BuildInfo;
+import monitor.build.BuildMeta;
+import monitor.build.IBuild.BuildStatus;
 
 public class NotificationManager implements INotificationManager {
 
+	private ILogger logger;
 	private IMessageDisplay display;
 	private MonitorInfo data;
 	
-	public NotificationManager(IMessageDisplay display) {
+	public NotificationManager(ILogger logger, IMessageDisplay display) {
 		this.display = display;
 	}
 
@@ -67,17 +69,20 @@ public class NotificationManager implements INotificationManager {
 		ArrayList<String> messages = new ArrayList<String>();
 		StatusAnalyzer analyzer = new StatusAnalyzer(oldData, newData);
 		for(StatusAnalyzer.StatusChange change : analyzer.getChanges()){
-			BuildInfo build = newData.getBuild(change.identifier);
-			if(build != null){
+			try{
+				BuildMeta meta = new BuildMeta(change.identifier);
 				if(display.supportNewline()){
+					String identifier = meta.name+"@"+meta.server;
 					if(change.oldStatus != null){
-						messages.add(build.identifier+" ("+change.oldStatus+" >> "+change.newStatus+")");
+						messages.add(identifier+" ("+change.oldStatus+" >> "+change.newStatus+")");
 					}else{
-						messages.add(build.identifier+" ("+change.newStatus+")");
+						messages.add(identifier+" ("+change.newStatus+")");
 					}
 				}else{
-					messages.add(build.name+"::"+change.newStatus);
+					messages.add(meta.name+"->"+change.newStatus);
 				}
+			}catch(Exception e){
+				logger.error(e);
 			}
 		}
 		return messages;

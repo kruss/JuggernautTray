@@ -1,14 +1,18 @@
-package monitor;
+package monitor.build;
 
 public interface IBuild extends Comparable<IBuild> {
 
+	public enum BuildType {
+		JUGGERNAUT, BAMBOO
+	}
+	
 	public enum BuildStatus {
 		UNKNOWN, OK, ERROR
 	}
 	
-	public String getIdentifier();
-	public String getName();
+	public BuildMeta getMeta();
 	public BuildStatus getStatus();
+	
 	public String getServerUrl();
 	public String getBuildUrl();
 	

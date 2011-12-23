@@ -14,8 +14,9 @@ import java.util.Date;
 
 import monitor.IBuildMonitor;
 import monitor.MonitorInfo;
-import monitor.IBuild.BuildStatus;
 import monitor.MonitorInfo.BuildInfo;
+import monitor.build.BuildMeta;
+import monitor.build.IBuild.BuildStatus;
 
 import core.Juggertray;
 
@@ -45,7 +46,7 @@ public class TrayManager implements ITrayManager, IChangeListener {
 		this.parent = parent;
 		this.monitor = monitor;
 		
-		notification = new NotificationManager(this);
+		notification = new NotificationManager(logger, this);
 		icon = null;
 		trigger = false;
 	}
@@ -160,16 +161,22 @@ public class TrayManager implements ITrayManager, IChangeListener {
 		PopupMenu popupMenu = new PopupMenu();
         
         for(BuildInfo build : builds){
-            MenuItem buildMenu = new MenuItem(build.identifier+" ("+build.status.toString()+")");
-            final String url = build.url;
-            buildMenu.addActionListener(new AbstractTrayAction(logger, this){
-    			@Override
-    			protected void action(ActionEvent event) throws Exception {
-    				logger.info("open browser: "+url);
-    				SystemTools.openBrowser(url);
-    			}
-            });
+        	try{
+	        	BuildMeta meta = new BuildMeta(build.identifier);
+	        	String identifier = meta.name+"@"+meta.server;
+	            MenuItem buildMenu = new MenuItem(identifier+" ("+build.status.toString()+")");
+	            final String url = build.url;
+	            buildMenu.addActionListener(new AbstractTrayAction(logger, this){
+	    			@Override
+	    			protected void action(ActionEvent event) throws Exception {
+	    				logger.info("open browser: "+url);
+	    				SystemTools.openBrowser(url);
+	    			}
+	            });
             popupMenu.add(buildMenu);
+        	}catch(Exception e){
+        		logger.error(e);
+        	}
         }
         if(builds.size() > 0){
         	popupMenu.addSeparator();

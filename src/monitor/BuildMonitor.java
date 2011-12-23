@@ -5,6 +5,12 @@ import java.util.ArrayList;
 
 import java.util.Collections;
 
+import monitor.build.BambooBuild;
+import monitor.build.JuggernautBuild;
+import monitor.build.BuildMeta;
+import monitor.build.IBuild;
+import monitor.build.IBuild.BuildType;
+
 import util.FileTools;
 import util.SystemTools;
 import util.logger.ILogger;
@@ -67,7 +73,15 @@ public class BuildMonitor implements IBuildMonitor {
 	public synchronized void addBuild(String identifier) throws Exception {
 		if(getBuild(identifier) == null){
 			logger.info("add build: "+identifier);
-			IBuild build = new Build(identifier);
+			IBuild build = null;
+			BuildMeta meta = new BuildMeta(identifier);
+			if(meta.type.equalsIgnoreCase(BuildType.JUGGERNAUT.toString())){
+				build = new JuggernautBuild(meta);
+			}else if(meta.type.equalsIgnoreCase(BuildType.BAMBOO.toString())){
+				build = new BambooBuild(meta);
+			}else{
+				throw new Exception("invalid type: "+meta.type);
+			}
 			builds.add(build);
 			Collections.sort(builds);
 			save();
@@ -78,7 +92,7 @@ public class BuildMonitor implements IBuildMonitor {
 	public synchronized void removeBuild(String identifier) throws Exception {
 		IBuild build = getBuild(identifier);
 		if(build != null){
-			logger.info("remove build: "+build.getIdentifier());
+			logger.info("remove build: "+build.getMeta().identifier);
 			builds.remove(build);
 			save();
 		}
@@ -86,7 +100,7 @@ public class BuildMonitor implements IBuildMonitor {
 	
 	private IBuild getBuild(String identifier) {
 		for(IBuild build : builds){
-			if(build.getIdentifier().equals(identifier)){
+			if(build.getMeta().identifier.equals(identifier)){
 				return build;
 			}
 		}
@@ -96,15 +110,15 @@ public class BuildMonitor implements IBuildMonitor {
 	@Override
 	public synchronized void updateMonitor() throws Exception {
 		for(IBuild build : builds){
-			logger.info("update build: "+build.getIdentifier());
+			logger.info("update build: "+build.getMeta().identifier);
 			try{
 				String content = FileTools.readUrl(build.getBuildUrl());
 				logger.debug(content);
 				build.updateStatus(content);
 			}catch(Exception e){
-				logger.warn("Could not update ["+build.getIdentifier()+"] => "+e.getClass().getSimpleName()+" \""+e.getMessage()+"\"");
+				logger.warn("Could not update ["+build.getMeta().identifier+"] => "+e.getClass().getSimpleName()+" \""+e.getMessage()+"\"");
 			}
-			logger.info("=> "+build.getIdentifier()+" ("+build.getStatus()+")");
+			logger.info("=> "+build.getMeta().identifier+" ("+build.getStatus()+")");
 		}
 		notifier.notifyListeners();
 	}
@@ -145,7 +159,7 @@ public class BuildMonitor implements IBuildMonitor {
 		logger.debug("save: "+file.getAbsolutePath());
 		StringBuilder content = new StringBuilder();
 		for(IBuild build : builds){
-			content.append(build.getIdentifier()+"\n");
+			content.append(build.getMeta().identifier+"\n");
 		}
 		FileTools.writeFile(file, content.toString());
 	}

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Dashboard - Atlassian Bamboo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+
+    <link rel="shortcut icon" href="/s/de_DE/2719/1/_/images/icons/favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="/s/de_DE/2719/1/_/images/icons/favicon.png" type="image/png" />
+
+    <script type="text/javascript">
+        (function (window) {
+            var BAMBOO = window.BAMBOO = window.BAMBOO || {};
+            BAMBOO.contextPath = '';
+        })(window);
+    </script>
+
+        
+        
+    <!--[if IE 9]>
+<link type="text/css" rel="stylesheet" href="/s/de_DE/2719/1/a80c70ee1051d4c53850963aa685fd91/_/download/contextbatch/css/atl.general,atl.dashboard/batch.css?conditionalComment=IE+9" media="all">
+<![endif]-->
+<!--[if lt IE 9]>
+<link type="text/css" rel="stylesheet" href="/s/de_DE/2719/1/a80c70ee1051d4c53850963aa685fd91/_/download/contextbatch/css/atl.general,atl.dashboard/batch.css?conditionalComment=lt+IE+9" media="all">
+<![endif]-->
+<!--[if lte IE 9]>
+<link type="text/css" rel="stylesheet" href="/s/de_DE/2719/1/a80c70ee1051d4c53850963aa685fd91/_/download/contextbatch/css/atl.general,atl.dashboard/batch.css?conditionalComment=lte+IE+9" media="all">
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="/s/de_DE/2719/1/a80c70ee1051d4c53850963aa685fd91/_/download/contextbatch/css/atl.general,atl.dashboard/batch.css" media="all">
+<script type="text/javascript" src="/s/de_DE/2719/1/a80c70ee1051d4c53850963aa685fd91/_/download/contextbatch/js/atl.general,atl.dashboard/batch.js" ></script>
+<!--[if lte IE 8]>
+<script type="text/javascript" src="/s/de_DE/2719/1/a80c70ee1051d4c53850963aa685fd91/_/download/contextbatch/js/atl.general,atl.dashboard/batch.js?conditionalComment=lte+IE+8" ></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/s/de_DE/2719/1/a80c70ee1051d4c53850963aa685fd91/_/download/contextbatch/js/atl.general,atl.dashboard/batch.js?conditionalComment=lt+IE+9" ></script>
+<![endif]-->
+
+
+<meta name="decorator" content="atl.dashboard"/>
+    <meta name="tab" content="allPlansTab" />
+</head>
+<body class="dec_atl_dashboard " >
+<div id="container">
+    <ul id="top">
+        <li id="skipNav">
+            <a href="#menu">Skip to navigation</a>
+        </li>
+
+        <li>
+            <a href="#content">Skip to content</a>
+        </li>
+    </ul>
+    <div id="nonFooter">
+
+<div id="hd">
+    <div id="system-state-banner" class="aui-message warning hidden">
+            
+<span id="system-state-banner-info"></span>
+
+            <span class="aui-icon icon-warning"></span>
+    </div>
+<script type="text/javascript">
+
+    if (BAMBOO && BAMBOO.ADMIN && BAMBOO.ADMIN.SERVERSTATE) {
+        AJS.$(function($) {
+            BAMBOO.ADMIN.SERVERSTATE.serverState.init({
+                control: "#system-state-banner",
+                statusInfo: "#system-state-banner-info",
+                buttonLink: "#system-state-banner-button",
+                buttonIcon: "#system-state-banner-button-icon",
+                buttonText: "#system-state-banner-button-text",
+                serverRunningCallaback: function() {
+                    var pauseButton = AJS.$("#pause-server-button");
+                    if (pauseButton) {
+                        pauseButton.removeClass("disabled");
+                    }
+                }
+            });
+        });
+    }
+
+</script><div id="header">
+    <div id="logo">
+        <a href="/start.action" rel="nofollow">Atlassian Bamboo</a>
+    </div>
+    <ul id="userOptions">
+        <li id="loginLink">
+
+            <a id="login" href="/userlogin!default.action?os_destination=%2FallPlans.action">Log in</a>
+        </li>
+            <li id="signupLink">
+                <a id="signup" href="/signupUser!default.action">Signup</a>
+            </li>
+        <li id="helpLink">
+            <a id="help" href="http://confluence.atlassian.com/display/BAMBOO">Help</a>
+
+        </li>
+    </ul>
+</div> <!-- END #header -->
+
+<div id="menu">
+    <ul>
+        <li ><a id="home" href="/start.action" title="Atlassian Bamboo" accesskey="H">Dashboard</a></li>
+            <li ><a id="authors" href="/authors/gotoAuthorReport.action" accesskey="U">Authors</a></li>
+            <li ><a id="reports" href="/reports/viewReport.action" accesskey="R">Reports</a></li>
+
+    </ul>
+</div> <!-- END #menu -->
+
+</div> <!-- END #hd -->
+<div id="bd">
+    <div id="content">
+        <h1 id="dashboard-instance-name">Atlassian Bamboo</h1>
+    <ul id="external-operations" class="dashboardExternal">
+            <li>
+
+<div class="aui-dd-parent" id="wallBoardDropdown">
+    <span class="aui-dd-trigger"><span class="icon icon-wallboard"></span>Wallboard <span class="icon icon-drop"></span></span>
+    <ul class="aui-dropdown aui-dropdown-right hidden">
+<li class="dropdown-item"><a href="/telemetry.action" class="item-link         iconless 
+">All Plans</a></li>
+    </ul>
+</div>
+<script type="text/javascript">
+    AJS.$(function() {
+        AJS.$("#wallBoardDropdown").dropDown();
+    });
+</script>
+            </li>
+    </ul>
+
+<div class="aui-tabs horizontal-tabs aui-tabs-disabled">
+    <ul class="tabs-menu">
+            <li class="menu-item active-tab">
+                <a  id="allPlansTab" href="/allPlans.action"><strong>All Plans</strong></a>
+            </li>
+            <li class="menu-item">
+                <a  id="currentTab" href="/currentActivity.action"><strong>Current Activity</strong></a>
+            </li>
+
+    </ul>
+    <div class="tabs-pane active-pane">
+            <div id="dashboard-controls" class="aui-toolbar inline">
+    <ul class="toolbar-group">
+        <li class="toolbar-item collapse-all">
+            <a class="toolbar-trigger"><span class="icon icon-collapse-gh" title="Collapse All"><span>Collapse All</span></span></a>
+        </li>
+        <li class="toolbar-item expand-all">
+
+            <a class="toolbar-trigger"><span class="icon icon-expand-gh" title="Expand All"><span>Expand All</span></span></a>
+        </li>
+    </ul>
+</div>
+<div id="ajaxErrorHolder" class="hidden">
+        <div  class="aui-message warning">
+            
+Background page refresh cannot contact server. Please ensure Bamboo server is available and <a href="">reload the page</a>.  The error was:            <span class="ajaxErrorMessage"></span>
+            <span class="aui-icon icon-warning"></span>
+
+    </div>
+</div>    <table class="aui aui-zebra" id="dashboard">
+            <col width="16px"/>
+            <col width="17%"/>
+        <col width="20%" style="min-width: 200px;"/>
+        <col width="10%"/>
+        <col width=""/>
+        <col width=""/>
+        <col width=""/>
+
+        <col width="70px"/>
+        <thead>
+            <tr>
+                    <th></th>
+                    <th>Project</th>
+                <th>Plan</th>
+                <th>Build</th>
+
+                <th>Completed</th>
+                <th>Tests</th>
+                <th>Reason</th>
+                <th></th>
+            </tr>
+        </thead>
+
+
+                    <tbody class="projectHeader hidden" id="projectHeader294913">
+                        <tr>
+                                <td class="twixie expand" id="twixie294913">
+                                    <a tabindex="0"><span class="icon icon-expand" title="Expand"><span>Expand</span></span></a>
+                                </td>
+                                <td class="project">
+                                    <a id="viewProject:FOOPRO1" href="/browse/FOOPRO1">
+                                    FOO-PRO1
+                                    </a>
+
+                                </td>
+                            <td></td>
+                            <td colspan="5">
+                                <div class="statusMessage">
+<span class="icon icon-project-fail"></span>                                    1 of 2 Plans failed
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                    <tbody class="project294913">
+
+                <tr>
+
+                            <td class="twixie collapse" id="twixie294913" rowspan="2">
+                                <a tabindex="0"><span class="icon icon-collapse" title="Collapse"><span>Collapse</span></span></a>
+                            </td>
+                            <td class="project" rowspan="2">
+                                <a id="viewProject:FOOPRO1" href="/browse/FOOPRO1">FOO-PRO1</a>
+
+                            </td>
+                <td>
+                    <a id="viewBuild:FOOPRO1-CONTINUOUS" href="/browse/FOOPRO1-CONTINUOUS" >Continuous-Build</a>
+                </td>
+
+                    <td class="planKeySection Successful">
+<a id="statusSectionFOOPRO1-CONTINUOUS" class="statusIcon" href="/browse/FOOPRO1-CONTINUOUS"> <img src="/s/de_DE/2719/1/_/images/iconsv3/plan_successful_16.png" alt="Last build was successful" title="Last build was successful"/></a>                        <a  id="latestBuildFOOPRO1-CONTINUOUS" href="/browse/FOOPRO1-CONTINUOUS/latest" title="Latest build">#277</a>
+
+                    </td>
+                    <td>
+                            <span id="lastBuiltSummaryFOOPRO1-CONTINUOUS" title="02:22 PM, Fri, 23 Dec">19 minutes ago</span>
+                    </td>
+                    <td id="testSummaryFOOPRO1-CONTINUOUS">
+                        No tests found
+                    </td>
+                    <td>
+                        <span id="reasonSummaryFOOPRO1-CONTINUOUS"><a href="http://255.255.255.255:8085/browse/FOOPRO1-CONTINUOUS-277/commit">Updated by dgdgdg</a></span>
+
+                            <script type="text/javascript">
+                                AJS.$(initCommitsTooltip("reasonSummaryFOOPRO1-CONTINUOUS", "FOOPRO1-CONTINUOUS", "277"));
+                            </script>
+                    </td>
+                <td>
+    <!-- operations -->
+                </td>
+            </tr>
+
+                <tr>
+
+                <td>
+                    <a id="viewBuild:FOOPRO1-NIGHTLY" href="/browse/FOOPRO1-NIGHTLY" >Nightly-Build</a>
+                </td>
+
+                    <td class="planKeySection Failed">
+<a id="statusSectionFOOPRO1-NIGHTLY" class="statusIcon" href="/browse/FOOPRO1-NIGHTLY"> <img src="/s/de_DE/2719/1/_/images/iconsv3/plan_failed_16.png" alt="The last build failed" title="The last build failed" /></a>                        <a  id="latestBuildFOOPRO1-NIGHTLY" href="/browse/FOOPRO1-NIGHTLY/latest" title="Latest build">#50</a>
+
+                    </td>
+
+                    <td>
+                            <span id="lastBuiltSummaryFOOPRO1-NIGHTLY" title="12:36 AM, Fri, 23 Dec">14 hours ago</span>
+                    </td>
+                    <td id="testSummaryFOOPRO1-NIGHTLY">
+                        No tests found
+                    </td>
+                    <td>
+                        <span id="reasonSummaryFOOPRO1-NIGHTLY">Scheduled build</span>
+
+                            <script type="text/javascript">
+                                AJS.$(initCommitsTooltip("reasonSummaryFOOPRO1-NIGHTLY", "FOOPRO1-NIGHTLY", "50"));
+                            </script>
+                    </td>
+                <td>
+    <!-- operations -->
+                </td>
+            </tr>
+                        </tbody>
+
+                    <tbody class="projectHeader hidden" id="projectHeader1998850">
+
+                        <tr>
+                                <td class="twixie expand" id="twixie1998850">
+                                    <a tabindex="0"><span class="icon icon-expand" title="Expand"><span>Expand</span></span></a>
+                                </td>
+                                <td class="project">
+                                    <a id="viewProject:FOOICAM" href="/browse/FOOICAM">
+                                    FOO-PRO2
+                                    </a>
+                                </td>
+
+                            <td></td>
+                            <td colspan="5">
+                                <div class="statusMessage">
+<span class="icon icon-project-success"></span>                                    2 successful Plans
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody class="project1998850">
+
+                <tr>
+
+                            <td class="twixie collapse" id="twixie1998850" rowspan="2">
+                                <a tabindex="0"><span class="icon icon-collapse" title="Collapse"><span>Collapse</span></span></a>
+                            </td>
+                            <td class="project" rowspan="2">
+                                <a id="viewProject:FOOICAM" href="/browse/FOOICAM">FOO-PRO2</a>
+                            </td>
+
+                <td>
+                    <a id="viewBuild:FOOICAM-CONTINUOUS" href="/browse/FOOICAM-CONTINUOUS" >Continuous Build</a>
+                </td>
+
+                    <td class="planKeySection Successful">
+<a id="statusSectionFOOICAM-CONTINUOUS" class="statusIcon" href="/browse/FOOICAM-CONTINUOUS"> <img src="/s/de_DE/2719/1/_/images/iconsv3/plan_successful_16.png" alt="Last build was successful" title="Last build was successful"/></a>                        <a  id="latestBuildFOOICAM-CONTINUOUS" href="/browse/FOOICAM-CONTINUOUS/latest" title="Latest build">#110</a>
+
+                    </td>
+
+                    <td>
+                            <span id="lastBuiltSummaryFOOICAM-CONTINUOUS" title="09:48 AM, Fri, 23 Dec">4 hours ago</span>
+                    </td>
+                    <td id="testSummaryFOOICAM-CONTINUOUS">
+                        No tests found
+                    </td>
+                    <td>
+                        <span id="reasonSummaryFOOICAM-CONTINUOUS"><a href="http://255.255.255.255:8085/browse/FOOICAM-CONTINUOUS-110/commit">Updated by dgdgdg&lt;dgdgdg&gt;</a></span>
+
+                            <script type="text/javascript">
+                                AJS.$(initCommitsTooltip("reasonSummaryFOOICAM-CONTINUOUS", "FOOICAM-CONTINUOUS", "110"));
+                            </script>
+                    </td>
+                <td>
+    <!-- operations -->
+                </td>
+            </tr>
+
+                <tr>
+
+                <td>
+                    <a id="viewBuild:FOOICAM-NIGHTLY" href="/browse/FOOICAM-NIGHTLY" >Nightly-Build</a>
+                </td>
+
+                    <td class="planKeySection Successful">
+<a id="statusSectionFOOICAM-NIGHTLY" class="statusIcon" href="/browse/FOOICAM-NIGHTLY"> <img src="/s/de_DE/2719/1/_/images/iconsv3/plan_successful_16.png" alt="Last build was successful" title="Last build was successful"/></a>                        <a  id="latestBuildFOOICAM-NIGHTLY" href="/browse/FOOICAM-NIGHTLY/latest" title="Latest build">#41</a>
+
+                    </td>
+
+                    <td>
+                            <span id="lastBuiltSummaryFOOICAM-NIGHTLY" title="12:03 AM, Fri, 23 Dec">14 hours ago</span>
+                    </td>
+                    <td id="testSummaryFOOICAM-NIGHTLY">
+                        No tests found
+                    </td>
+                    <td>
+                        <span id="reasonSummaryFOOICAM-NIGHTLY">Scheduled build</span>
+
+                            <script type="text/javascript">
+                                AJS.$(initCommitsTooltip("reasonSummaryFOOICAM-NIGHTLY", "FOOICAM-NIGHTLY", "41"));
+                            </script>
+                    </td>
+                <td>
+    <!-- operations -->
+                </td>
+            </tr>
+                        </tbody>
+
+                    <tbody class="projectHeader hidden" id="projectHeader2523137">
+
+                        <tr>
+                                <td class="twixie expand" id="twixie2523137">
+                                    <a tabindex="0"><span class="icon icon-expand" title="Expand"><span>Expand</span></span></a>
+                                </td>
+                                <td class="project">
+                                    <a id="viewProject:TEST" href="/browse/TEST">
+                                    Test
+                                    </a>
+                                </td>
+
+                            <td></td>
+                            <td colspan="5">
+                                <div class="statusMessage">
+<span class="icon icon-project-success"></span>                                    2 successful Plans
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody class="project2523137">
+
+                <tr>
+
+                            <td class="twixie collapse" id="twixie2523137" rowspan="2">
+                                <a tabindex="0"><span class="icon icon-collapse" title="Collapse"><span>Collapse</span></span></a>
+                            </td>
+                            <td class="project" rowspan="2">
+                                <a id="viewProject:TEST" href="/browse/TEST">Test</a>
+                            </td>
+
+                <td>
+                    <a id="viewBuild:TEST-CPPDEMO" href="/browse/TEST-CPPDEMO" >cppdemo</a>
+                </td>
+
+                    <td class="planKeySection Successful">
+<a id="statusSectionTEST-CPPDEMO" class="statusIcon" href="/browse/TEST-CPPDEMO"> <img src="/s/de_DE/2719/1/_/images/iconsv3/plan_successful_16.png" alt="Last build was successful" title="Last build was successful"/></a>                        <a  id="latestBuildTEST-CPPDEMO" href="/browse/TEST-CPPDEMO/latest" title="Latest build">#24</a>
+
+                    </td>
+
+                    <td>
+                            <span id="lastBuiltSummaryTEST-CPPDEMO" title="11:31 AM, Fri, 16 Dec">1 week ago</span>
+                    </td>
+                    <td id="testSummaryTEST-CPPDEMO">
+                        No tests found
+                    </td>
+                    <td>
+                        <span id="reasonSummaryTEST-CPPDEMO">Manual build by <a href="http://255.255.255.255:8085/browse/user/dgdgdg">dgdgdg</a></span>
+
+                    </td>
+                <td>
+    <!-- operations -->
+                </td>
+            </tr>
+
+                <tr>
+
+                <td>
+                    <a id="viewBuild:TEST-DIABDEMO" href="/browse/TEST-DIABDEMO" >diabdemo</a>
+
+                </td>
+
+                    <td class="planKeySection Successful">
+<a id="statusSectionTEST-DIABDEMO" class="statusIcon" href="/browse/TEST-DIABDEMO"> <img src="/s/de_DE/2719/1/_/images/iconsv3/plan_successful_16.png" alt="Last build was successful" title="Last build was successful"/></a>                        <a  id="latestBuildTEST-DIABDEMO" href="/browse/TEST-DIABDEMO/latest" title="Latest build">#25</a>
+
+                    </td>
+                    <td>
+                            <span id="lastBuiltSummaryTEST-DIABDEMO" title="11:33 AM, Fri, 16 Dec">1 week ago</span>
+
+                    </td>
+                    <td id="testSummaryTEST-DIABDEMO">
+                        No tests found
+                    </td>
+                    <td>
+                        <span id="reasonSummaryTEST-DIABDEMO">Manual build by <a href="http://255.255.255.255:8085/browse/user/dgdgdg">dgdgdg</a></span>
+                    </td>
+                <td>
+
+    <!-- operations -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        (function ($) {
+            var collapseAllProjects = function () {
+                    $("#dashboard > tbody > tr > .twixie").each(function() {
+                        collapseProject($(this));
+                    });
+                },
+                expandAllProjects = function () {
+                    $("#dashboard > tbody > tr > .twixie").each(function() {
+                        expandProject($(this));
+                    });
+                },
+                collapseProject = function ($twixie) {
+                    var projectId = $twixie.attr("id").replace("twixie", "");
+                    if (projectId.length) {
+                        $("tbody.project" + projectId).hide();
+                        $("tbody#projectHeader" + projectId).show();
+                        saveToConglomerateCookie(BAMBOO_DASH_DISPLAY_TOGGLES, projectId, '0');
+                    }
+                },
+                expandProject = function ($twixie) {
+                    var projectId = $twixie.attr("id").replace("twixie", "");
+                    if (projectId.length) {
+                        $("tbody.project" + projectId).show();
+                        $("tbody#projectHeader" + projectId).hide();
+                        saveToConglomerateCookie(BAMBOO_DASH_DISPLAY_TOGGLES, projectId, null);
+                    }
+                };
+
+            $(document).delegate("#dashboard > tbody > tr > .twixie > a", "click", function (e) {
+                var $twixie = $(this).closest("td");
+                if ($twixie.hasClass("collapse")) {
+                    collapseProject($twixie);
+                } else {
+                    expandProject($twixie);
+                }
+            });
+
+            $("#dashboard-controls").delegate(".collapse-all > a", "click", collapseAllProjects)
+                                    .delegate(".expand-all > a", "click", expandAllProjects);
+        })(AJS.$);
+        AJS.$(function() {
+            AsynchronousRequestManager.init(".asynchronous", null, function () {
+                updatePlans();
+            });
+        });
+
+        (function () {
+            var timeout,
+                panelId = 'dashboardUpdatePlans';
+            if (typeof BAMBOO.panelTimeouts === "undefined") {
+                BAMBOO.panelTimeouts = {};
+            } else {
+                timeout = BAMBOO.panelTimeouts[panelId];
+                clearTimeout(timeout);
+            }
+            BAMBOO.panelTimeouts[panelId] = setTimeout(function () { updatePlans(0); }, BAMBOO.reloadDashboardTimeout * 1000);
+            BAMBOO.reloadDashboard = true;
+        })();
+    </script>
+<script type="text/javascript">
+    saveCookie("atlassian.bamboo.dashboard.tab.selected", "allPlansTab");
+</script>
+    </div>
+
+</div>
+
+        <p>
+            <a href="/rss/createAllBuildsRssFeed.action?feedType=rssAll"><span class="icon icon-rss" title="Point your rss reader at this link"><span>Point your rss reader at this link</span></span></a>
+Feed for <a href="/rss/createAllBuildsRssFeed.action?feedType=rssAll">all builds</a> or <a href="/rss/createAllBuildsRssFeed.action?feedType=rssFailed">all failed builds</a>.        </p>
+    </div>
+</div>
+
+    </div> <!-- END #nonFooter -->
+    <div id="ft">
+        <div id="footer">
+            <p>
+                <a href="http://www.atlassian.com/software/bamboo/">Continuous integration</a> powered by <a href="http://www.atlassian.com/software/bamboo/">Atlassian Bamboo</a> version 3.3.3 build 2719 -
+                <time datetime="2011-11-14T04:39:54">14 Nov 11</time>
+
+            </p>
+            <ul>
+                <li>
+                    <a href="https://support.atlassian.com/secure/CreateIssue.jspa?pid=10060&amp;issuetype=1">Report a problem</a>
+                </li>
+                <li>
+                    <a href="http://jira.atlassian.com/secure/CreateIssue.jspa?pid=11011&amp;issuetype=4">Request a feature</a>
+                </li>
+
+                <li>
+                    <a href="http://www.atlassian.com/about/contact.jsp">Contact Atlassian</a>
+                </li>
+                <li>
+                    <a href="/viewAdministrators.action">Contact Administrators</a>
+                </li>
+            </ul>
+        </div> <!-- END #footer -->
+
+    </div> <!-- END #ft -->
+</div> <!-- END #container -->
+</body>
+</html>

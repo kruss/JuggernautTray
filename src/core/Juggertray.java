@@ -18,7 +18,7 @@ import monitor.IBuildMonitor;
 public class Juggertray implements IComponent {
 
 	public static final String APP_NAME = "Juggertray";
-	public static final String APP_VERSION = "0.1.0";
+	public static final String APP_VERSION = "0.2.0";
 	
 	private static final String OUTPUT_FILE = "Juggertray.dat";
 	private static final int UPDATE_CYCLE = 3 * 60 * 1000; // 3 minutes
