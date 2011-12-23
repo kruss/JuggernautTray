@@ -98,7 +98,9 @@ public class BuildMonitor implements IBuildMonitor {
 		for(IBuild build : builds){
 			logger.info("update build: "+build.getIdentifier());
 			try{
-				build.updateBuild(logger);
+				String content = FileTools.readUrl(build.getBuildUrl());
+				logger.debug(content);
+				build.updateStatus(content);
 			}catch(Exception e){
 				logger.warn("Could not update ["+build.getIdentifier()+"] => "+e.getClass().getSimpleName()+" \""+e.getMessage()+"\"");
 			}

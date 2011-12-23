@@ -1,8 +1,5 @@
 package monitor;
 
-import util.FileTools;
-import util.logger.ILogger;
-
 public class Build implements IBuild {
 
 	private String name;
@@ -62,9 +59,8 @@ public class Build implements IBuild {
 	}
 
 	@Override
-	public void updateBuild(ILogger logger) throws Exception {
+	public void updateStatus(String content) throws Exception {
 		status = BuildStatus.UNKNOWN;
-		String content = FileTools.readUrl(getBuildUrl());
 		for(String line : content.split("\n")){
 			if(
 					line.contains("UNDEFINED") || 

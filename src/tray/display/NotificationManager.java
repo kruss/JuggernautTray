@@ -43,10 +43,6 @@ public class NotificationManager implements INotificationManager {
 		}
 		this.data = data;
 	}
-
-	private void displayEmptyMessage() {
-		display.displayMessage("Add some builds !", MessageType.WARNING);
-	}
 	
 	private void displayStatusMessage(ArrayList<String> messages, MessageType type) {
 		StringBuilder message = new StringBuilder();
@@ -57,6 +53,10 @@ public class NotificationManager implements INotificationManager {
 			}
 		}
 		display.displayMessage(message.toString(), type);
+	}
+	
+	private void displayEmptyMessage() {
+		display.displayMessage("Add some builds !", MessageType.WARNING);
 	}
 
 	private MessageType getMessageType(MonitorInfo data) {

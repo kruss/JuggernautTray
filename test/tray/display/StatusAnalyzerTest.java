@@ -11,7 +11,6 @@ import monitor.IBuild.BuildStatus;
 import org.junit.Test;
 
 import tray.display.StatusAnalyzer.StatusChange;
-import util.logger.ILogger;
 
 public class StatusAnalyzerTest {
 
@@ -104,7 +103,7 @@ public class StatusAnalyzerTest {
 		@Override
 		public BuildStatus getStatus(){ return status; }
 		@Override
-		public void updateBuild(ILogger logger) throws Exception {}
+		public void updateStatus(String content) throws Exception {}
 		@Override
 		public int compareTo(IBuild arg0) { return 0; }
 	}
