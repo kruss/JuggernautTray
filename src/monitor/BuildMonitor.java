@@ -9,6 +9,7 @@ import monitor.build.BambooBuild;
 import monitor.build.JuggernautBuild;
 import monitor.build.BuildMeta;
 import monitor.build.IBuild;
+import monitor.build.IBuild.BuildStatus;
 import monitor.build.IBuild.BuildType;
 
 import util.FileTools;
@@ -114,9 +115,10 @@ public class BuildMonitor implements IBuildMonitor {
 			try{
 				String content = FileTools.readUrl(build.getBuildUrl());
 				logger.debug(content);
-				build.updateStatus(content);
+				build.parseStatus(content);
 			}catch(Exception e){
 				logger.warn("Could not update ["+build.getMeta().identifier+"] => "+e.getClass().getSimpleName()+" \""+e.getMessage()+"\"");
+				build.setStatus(BuildStatus.UNKNOWN);
 			}
 			logger.info("=> "+build.getMeta().identifier+" ("+build.getStatus()+")");
 		}

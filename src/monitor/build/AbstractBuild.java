@@ -21,6 +21,11 @@ public abstract class AbstractBuild implements IBuild {
 	}	
 	
 	@Override
+	public void setStatus(BuildStatus status){
+		this.status = status;
+	}
+	
+	@Override
 	public String getServerUrl() {
 		if(meta.server.startsWith("http://")){
 			return meta.server;

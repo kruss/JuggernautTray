@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Foo - Nightly-Build: Plan Summary - Atlassian Bamboo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+
+    <link rel="shortcut icon" href="/s/de_DE/2719/1/_/images/icons/favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="/s/de_DE/2719/1/_/images/icons/favicon.png" type="image/png" />
+
+    <script type="text/javascript">
+        (function (window) {
+            var BAMBOO = window.BAMBOO = window.BAMBOO || {};
+            BAMBOO.contextPath = '';
+        })(window);
+    </script>
+
+        
+    <!--[if IE 9]>
+<link type="text/css" rel="stylesheet" href="/s/de_DE/2719/1/320ad54cd015f7ff8b686821b9d0abcd/_/download/contextbatch/css/atl.general/batch.css?conditionalComment=IE+9" media="all">
+<![endif]-->
+<!--[if lt IE 9]>
+<link type="text/css" rel="stylesheet" href="/s/de_DE/2719/1/320ad54cd015f7ff8b686821b9d0abcd/_/download/contextbatch/css/atl.general/batch.css?conditionalComment=lt+IE+9" media="all">
+<![endif]-->
+<!--[if lte IE 9]>
+<link type="text/css" rel="stylesheet" href="/s/de_DE/2719/1/320ad54cd015f7ff8b686821b9d0abcd/_/download/contextbatch/css/atl.general/batch.css?conditionalComment=lte+IE+9" media="all">
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="/s/de_DE/2719/1/320ad54cd015f7ff8b686821b9d0abcd/_/download/contextbatch/css/atl.general/batch.css" media="all">
+<script type="text/javascript" src="/s/de_DE/2719/1/320ad54cd015f7ff8b686821b9d0abcd/_/download/contextbatch/js/atl.general/batch.js" ></script>
+<!--[if lte IE 8]>
+<script type="text/javascript" src="/s/de_DE/2719/1/320ad54cd015f7ff8b686821b9d0abcd/_/download/contextbatch/js/atl.general/batch.js?conditionalComment=lte+IE+8" ></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/s/de_DE/2719/1/320ad54cd015f7ff8b686821b9d0abcd/_/download/contextbatch/js/atl.general/batch.js?conditionalComment=lt+IE+9" ></script>
+<![endif]-->
+
+
+
+</head>
+<body class="dec_plan " >
+<div id="container">
+    <ul id="top">
+        <li id="skipNav">
+            <a href="#menu">Skip to navigation</a>
+        </li>
+        <li>
+
+            <a href="#content">Skip to content</a>
+        </li>
+    </ul>
+    <div id="nonFooter">
+<div id="hd">
+    <div id="system-state-banner" class="aui-message warning hidden">
+            
+<span id="system-state-banner-info"></span>
+    <div id="system-state-banner-toolbar" class="aui-toolbar inline">
+        <ul class="toolbar-group">
+
+            <li class="toolbar-item">
+                <a id="system-state-banner-button" class="toolbar-trigger">
+                    <span id="system-state-banner-button-icon"></span>
+                    <span id="system-state-banner-button-text"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+            <span class="aui-icon icon-warning"></span>
+
+    </div>
+<script type="text/javascript">
+
+    if (BAMBOO && BAMBOO.ADMIN && BAMBOO.ADMIN.SERVERSTATE) {
+        AJS.$(function($) {
+            BAMBOO.ADMIN.SERVERSTATE.serverState.init({
+                control: "#system-state-banner",
+                statusInfo: "#system-state-banner-info",
+                buttonLink: "#system-state-banner-button",
+                buttonIcon: "#system-state-banner-button-icon",
+                buttonText: "#system-state-banner-button-text",
+                serverRunningCallaback: function() {
+                    var pauseButton = AJS.$("#pause-server-button");
+                    if (pauseButton) {
+                        pauseButton.removeClass("disabled");
+                    }
+                }
+            });
+        });
+    }
+
+</script><div id="header">
+    <div id="logo">
+        <a href="/start.action" rel="nofollow">Atlassian Bamboo</a>
+    </div>
+    <ul id="userOptions">
+        <li id="userInfo">
+            User: <strong><a href="/browse/user/foo">Foo</a></strong>
+
+        </li>
+        <li id="profileLink">
+            <a id="profile" href="/profile/userProfile.action">Profile</a>
+        </li>
+        <li id="logoutLink">
+            <a id="logout" href="/userLogout.action">Log out</a>
+        </li>
+        <li id="helpLink">
+
+            <a id="help" href="http://confluence.atlassian.com/display/BAMBOO">Help</a>
+        </li>
+    </ul>
+</div> <!-- END #header -->
+
+<div id="menu">
+    <ul>
+        <li ><a id="home" href="/start.action" title="Atlassian Bamboo" accesskey="H">Dashboard</a></li>
+            <li ><a id="authors" href="/authors/gotoAuthorReport.action" accesskey="U">Authors</a></li>
+
+            <li ><a id="reports" href="/reports/viewReport.action" accesskey="R">Reports</a></li>
+            <li ><a id="createPlanLink"  accesskey="C" href="/build/admin/create/addPlan.action">Create Plan</a></li>
+            <li ><a id="admin" accesskey="A" href="/admin/administer.action">Administration</a></li>
+    </ul>
+</div> <!-- END #menu -->
+
+<div class="paddedClearer"></div>
+    <div class="adminErrorBox">
+
+            <div class="adminErrorBoxLinks"><a href="/admin/adminErrors!removeError.action?errorKey=backup.error.failed">Acknowledge</a></div>
+            <p>Bamboo failed to run the backup on 07 Jan 2012.  See the logs for further details.</p>
+    </div>
+</div> <!-- END #hd -->
+
+    <script type="text/javascript">
+        BAMBOO.currentPlan = {
+            key: 'BMWICAM-NIGHTLY',
+            name: 'Nightly-Build'
+        };
+    </script>
+    <div id="content">
+        <div id="build-details">
+
+    <div id="latestStatusHolder">
+<div id="plan-status"> <p class="success"> <strong>Plan Status:</strong> <a href="/browse/BMWICAM-NIGHTLY-59">#59</a> was successful </p> <script type="text/javascript"> BAMBOO.buildLastCurrentStatus = 'success'; </script> </div><!-- END #plan-status -->    </div>
+    <script type="text/javascript">
+        AJS.$(function() {
+            var timeout,
+                panelId = 'latestStatusHolder';
+            if (typeof BAMBOO.panelTimeouts === "undefined") {
+                BAMBOO.panelTimeouts = {};
+            } else {
+                timeout = BAMBOO.panelTimeouts[panelId];
+                clearTimeout(timeout);
+            }
+            BAMBOO.panelTimeouts[panelId] = setTimeout(function () { reloadPanel(panelId, '/ajax/showLatestBuildStatus.action?planKey=BMWICAM-NIGHTLY', 10, true, null, null); }, 10 * 1000);
+        });
+    </script>
+
+<div id="breadcrumb">                <span><a href="/browse/BMWICAM" id="breadcrumb:BMWICAM" title="Project: Foo">Foo</a></span>
+                <span><a href="/browse/BMWICAM-NIGHTLY/" id="breadcrumb:BMWICAM-NIGHTLY" title="Plan: Nightly-Build" class="current">Nightly-Build</a></span>
+</div>
+<!--[if lt IE 8]>
+<script type="text/javascript">
+    AJS.$(function($){
+        $("#breadcrumb > span:not(.disabled, :first-child)").prepend('<span class="breadcrumb-separator">&rsaquo;</span>');
+    });
+</script>
+<![endif]-->        <div id="planLabel">
+
+        <span class="label-none">
+        </span>
+            
+        <a href="/build/label/ajax/editLabels.action?buildKey=BMWICAM-NIGHTLY" class="labels-edit" title="Edit Labels">
+
+        </a>
+
+        
+        <script type="text/javascript">
+            BAMBOO.LABELS.init({
+                   labelView : "#planLabel .label-list, #planLabel .label-none, #labels-dialog .label-list, #labels-dialog .label-none",
+                labelsDialog: {
+                    header: "Labels"
+                },
+                templates: {
+                    shortcutKeyTemplate: "Shortcut tip: Pressing <kbd\>{shortcut}</kbd\> also opens this dialog box"
+                }
+            });
+        </script>
+        </div>
+        </div>
+        <div id="build-container">
+            <div id="plan-navigator">
+
+        <h2>Plan Navigator</h2>
+
+        <h3 class="active" data-plan-key="BMWICAM-NIGHTLY">
+            <a href="/browse/BMWICAM-NIGHTLY">Nightly-Build</a>
+        </h3>
+        <ul>
+                <li id="stage-1835010" >
+                    <h4 >Default Stage</h4>
+                    <ul>
+                            <li id="job-BMWICAM-NIGHTLY-JOB1"  class="" data-job-key="BMWICAM-NIGHTLY-JOB1">
+
+<span class="icon icon-job"></span>                                <a id="navJob_BMWICAM-NIGHTLY-JOB1" href="/browse/BMWICAM-NIGHTLY-JOB1">Default Job</a>
+                            </li>
+                    </ul>
+                </li>
+        </ul>
+            </div>
+            <div id="build-content">
+    <ul id="external-operations" >
+
+
+        <li>
+<div class="aui-dd-parent" id="runMenuParent">
+    <span class="aui-dd-trigger"><span class="icon icon-build-run"></span>  Run Plan <span class="icon icon-drop"></span></span>
+    <ul class="aui-dropdown aui-dropdown-right hidden">
+        <li>
+                    <ul><li class="dropdown-item"><a href="/build/admin/triggerManualBuild.action?buildKey=BMWICAM-NIGHTLY" id="manualBuild_BMWICAM-NIGHTLY" class="item-link         
+"><span class="icon icon-build-run"></span>Run</a></li>
+
+    <script type="text/javascript">
+            BAMBOO.simpleDialogForm({
+                trigger: '#parameterisedManualBuild_BMWICAM-NIGHTLY',
+                dialogWidth: 800,
+                dialogHeight: 400,
+                success: null,
+                cancel: null,
+                header: "Run Customised Build"
+            });
+    </script>
+
+
+<li class="dropdown-item"><a id="parameterisedManualBuild_BMWICAM-NIGHTLY" href="/ajax/editParameterisedManualBuild.action?planKey=BMWICAM-NIGHTLY&amp;returnUrl=%2Fchain%2FviewChain.action%3FplanKey%3DBMWICAM-NIGHTLY" class="item-link " ><span class="icon icon-build-run"></span> Run Customised&hellip;</a></li></ul>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+    AJS.$(function () {
+        AJS.$("#runMenuParent").dropDown();
+    });
+</script>
+        </li>
+
+            <li>
+<div class="aui-dd-parent" id="buildMenuParent">
+    <span class="aui-dd-trigger"><span class="icon icon-tools"></span>  Actions <span class="icon icon-drop"></span></span>
+    <ul class="aui-dropdown aui-dropdown-right hidden">
+        <li>
+                        <ul><li class="dropdown-item"><a href="/build/admin/suspendBuild.action?returnUrl=%2Fchain%2FviewChain.action%3FplanKey%3DBMWICAM-NIGHTLY&amp;buildKey=BMWICAM-NIGHTLY" id="suspendBuild:BMWICAM-NIGHTLY" class="item-link         
+"><span class="icon icon-build-disable"></span>Disable Plan</a></li><li class="dropdown-item"><a href="/build/label/setFavourite.action?planKey=BMWICAM-NIGHTLY&amp;returnUrl=%2Fchain%2FviewChain.action%3FplanKey%3DBMWICAM-NIGHTLY&amp;newFavStatus=true" id="toggleFavourite_BMWICAM-NIGHTLY" class="item-link         
+"><span class="icon icon-favourite"></span>Favourite Plan</a></li><li class="dropdown-item"><a href="/browse/BMWICAM-NIGHTLY/editConfig" id="editBuild:BMWICAM-NIGHTLY" class="item-link         
+"><span class="icon icon-build-configure"></span>Configure Plan</a></li><li class="dropdown-item"><a id="addPlanLabel" class="item-link " ><span class="icon icon-label"></span> Modify Plan Label</a></li></ul>
+
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+    AJS.$(function () {
+        AJS.$("#buildMenuParent").dropDown();
+    });
+</script>
+            </li>
+    </ul>
+
+<div class="aui-tabs horizontal-tabs aui-tabs-disabled">
+    <ul class="tabs-menu">
+            <li class="menu-item active-tab">
+
+                <a  id="summary:BMWICAM-NIGHTLY" href="/browse/BMWICAM-NIGHTLY/"><strong>Plan Summary</strong></a>
+            </li>
+            <li class="menu-item">
+                <a  id="failures:BMWICAM-NIGHTLY" href="/browse/BMWICAM-NIGHTLY/failures"><strong>Recent Failures</strong></a>
+            </li>
+            <li class="menu-item">
+                <a  id="history:BMWICAM-NIGHTLY" href="/browse/BMWICAM-NIGHTLY/history"><strong>History</strong></a>
+
+            </li>
+            <li class="menu-item">
+                <a  id="configuration:BMWICAM-NIGHTLY" href="/browse/BMWICAM-NIGHTLY/config"><strong>Configuration</strong></a>
+            </li>
+    </ul>
+    <div class="tabs-pane active-pane">
+                              <link rel="alternate" type="application/rss+xml" title="&ldquo;Foo - Nightly-Build&rdquo; all builds RSS feed" href="/rss/createAllBuildsRssFeed.action?feedType=rssAll&amp;buildKey=BMWICAM-NIGHTLY&amp;os_authType=basic" /><link rel="alternate" type="application/rss+xml" title="&ldquo;Foo - Nightly-Build&rdquo; failed builds RSS feed" href="/rss/createAllBuildsRssFeed.action?feedType=rssFailed&amp;buildKey=BMWICAM-NIGHTLY&amp;os_authType=basic" /><meta name="tab" content="summary"/>
+
+
+<div>
+        <div id="filterButton" class="toolbar aui-toolbar inline">
+            <ul class="toolbar-group">
+                <li class="toolbar-item aui-dd-parent">
+                    <a class="toolbar-trigger">
+                        Showing Last 25 builds <span class="icon icon-drop"></span>
+                    </a>
+                    <ul class="aui-dropdown aui-dropdown-right hidden">
+                                
+
+<li class="dropdown-item"><a href="/build/setResultsFilter.action?returnUrl=%2Fchain%2FviewChain.action%3FplanKey%3DBMWICAM-NIGHTLY&amp;buildKey=BMWICAM-NIGHTLY&amp;filterController.selectedFilterKey=LAST_25_BUILDS" id="filter:LAST_25_BUILDS" class="item-link         iconless 
+">Last 25 builds</a></li>                                
+<li class="dropdown-item"><a href="/build/setResultsFilter.action?returnUrl=%2Fchain%2FviewChain.action%3FplanKey%3DBMWICAM-NIGHTLY&amp;buildKey=BMWICAM-NIGHTLY&amp;filterController.selectedFilterKey=LAST_7_DAYS" id="filter:LAST_7_DAYS" class="item-link         iconless 
+">Last 7 days</a></li>                                
+<li class="dropdown-item"><a href="/build/setResultsFilter.action?returnUrl=%2Fchain%2FviewChain.action%3FplanKey%3DBMWICAM-NIGHTLY&amp;buildKey=BMWICAM-NIGHTLY&amp;filterController.selectedFilterKey=LAST_30_DAYS" id="filter:LAST_30_DAYS" class="item-link         iconless 
+">Last 30 days</a></li>                                
+<li class="dropdown-item"><a href="/build/setResultsFilter.action?returnUrl=%2Fchain%2FviewChain.action%3FplanKey%3DBMWICAM-NIGHTLY&amp;buildKey=BMWICAM-NIGHTLY&amp;filterController.selectedFilterKey=LAST_90_DAYS" id="filter:LAST_90_DAYS" class="item-link         iconless 
+">Last 90 days</a></li>                                
+<li class="dropdown-item"><a href="/build/setResultsFilter.action?returnUrl=%2Fchain%2FviewChain.action%3FplanKey%3DBMWICAM-NIGHTLY&amp;buildKey=BMWICAM-NIGHTLY&amp;filterController.selectedFilterKey=ALL_BUILDS" id="filter:ALL_BUILDS" class="item-link         iconless 
+">All builds</a></li>                     </ul>
+                </li>
+            </ul>
+        </div>
+
+        <script type="text/javascript">
+            AJS.$(function () {
+                AJS.$("#filterButton .aui-dd-parent").dropDown("Standard", { trigger: "a.toolbar-trigger" });
+            });
+        </script>
+
+<h1>Plan Summary</h1></div>
+<div id="buildSummary">
+    <div id="planDetailsSummary">
+        <div id="activitySummary">
+            <h2>Current Activity</h2>
+
+
+<div id="liveActivity" >
+
+            <p>No builds are currently running.</p>
+</div>
+
+<script type="text/x-template" title="buildListItem-template">
+<li id="b{buildResultKey}" class="{cssClass}">
+    <span class="build-description"><strong><a href="/browse/{buildResultKey}">{buildResultKey}</a></strong> <span>{triggerReason}</span> <span class="stage-info">{currentStage}</span></span>
+    <a id="stopBuild_{buildResultKey}" href="/build/admin/ajax/stopPlan.action?planResultKey={buildResultKey}" class="build-stop" title="Stop currently running build">Stop currently running build</a>
+{buildMessage}
+    <div class="additional-information">
+        <div class="issueSummary">
+            <h2 class="jiraIssuesHeader">JIRA Issues</h2>
+        </div>
+        <div class="changesSummary">
+            <h2 class="codeChangesHeader">Code Changes</h2>
+        </div>
+    </div>
+</li>
+</script>
+<script type="text/x-template" title="buildMessage-template">
+    <div class="message {type}">{text}</div>
+</script>
+<script type="text/x-template" title="jiraIssue-template">
+    <li>
+        <a title="View this issue" href="{url}?page=com.atlassian.jira.plugin.ext.bamboo%3Abamboo-build-results-tabpanel"><img alt="{issueType}" src="{issueIconUrl}" class="issueTypeImg"/></a>
+
+        <h3><a href="{url}">{key}</a></h3>
+
+        <p class="jiraIssueDetails">{details}</p>
+    </li>
+</script>
+<script type="text/x-template" title="codeChange-changesetLink-template">
+    <a href="{commitUrl}" class="revision-id">{changesetId}</a>
+</script>
+<script type="text/x-template" title="codeChange-changesetDisplay-template">
+    <span class="revision-id">{changesetId}</span>
+</script>
+<script type="text/x-template" title="codeChange-template">
+    <li>
+        {changesetInfo}
+        <img alt="{author}" src="/images/icons/businessman.gif" class="profileImage"/>
+
+        <h3><a href="/browse/user/{author}">{author}</a></h3>
+
+        <p>{comment}</p>
+    </li>
+</script>
+
+<script type="text/x-template" title="currentStage-template">
+- executing stage <strong>{stageName}</strong> (stage {stageNumber} of {totalStages})</script>
+
+
+<script type="text/javascript">
+    AJS.$(function ()
+          {
+              LiveActivity.init({
+                                    planKey: "BMWICAM-NIGHTLY",
+                                    container: AJS.$("#liveActivity"),
+                                    getBuildsUrl: "/chain/admin/ajax/getChains.action",
+                                    getChangesUrl: "/rest/api/latest/result/",
+                                    queueEmptyText: "No builds are currently running.",
+                                    cancellingBuildText: "Build is currently being stopped... If there is no response you may need to kill the build manually.",
+                                    noAdditionalInfoText: "No additional information found.",
+                                    defaultIssueIconUrl: "/images/icons/jira_type_unknown.gif",
+                                    defaultIssueType: "Unknown Issue Type",
+                                    templates: {
+                                        buildListItemTemplate: "buildListItem-template",
+                                        buildMessageTemplate: "buildMessage-template",
+                                        jiraIssueTemplate: "jiraIssue-template",
+                                        codeChangeTemplate: "codeChange-template",
+                                        currentStageTemplate: "currentStage-template",
+                                        codeChangeChangesetLinkTemplate: "codeChange-changesetLink-template",
+                                        codeChangeChangesetDisplayTemplate: "codeChange-changesetDisplay-template"
+                                        
+                                    }
+                                });
+          });
+</script>
+
+        </div>
+
+        <div class="recentHistorySummary">
+            <h2>Recent History</h2>
+
+    <table id="buildResultsTable" class="aui">
+
+        <thead class="assistive">
+            <tr>
+                <th>Status</th>
+                <th>Reason</th>
+                <th>Completed</th>
+                <th>Test Results</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr>
+                <td class="Successful">
+                        <a class="statusIndicator" id="buildResult_BMWICAM-NIGHTLY-59" href="/browse/BMWICAM-NIGHTLY-59" title="Successful"><span class="icon icon-Successful"></span> #59</a>
+
+                </td>
+                <td>
+
+                    <span id="commits_BMWICAM-NIGHTLY-59" class="commits">Scheduled build</span>
+                </td>
+
+
+                    <td title="Tue, 10 Jan, 12:03 AM">12 hours ago</td>
+
+
+
+                <td>
+Testless build                </td>
+
+            </tr>
+            <tr>
+                <td class="Successful">
+                        <a class="statusIndicator" id="buildResult_BMWICAM-NIGHTLY-58" href="/browse/BMWICAM-NIGHTLY-58" title="Successful"><span class="icon icon-Successful"></span> #58</a>
+
+                </td>
+                <td>
+                    <span id="commits_BMWICAM-NIGHTLY-58" class="commits">Scheduled build</span>
+
+                </td>
+
+
+                    <td title="Mon, 9 Jan, 12:03 AM">1 day ago</td>
+
+
+
+                <td>
+Testless build                </td>
+            </tr>
+            <tr>
+
+                <td class="Successful">
+                        <a class="statusIndicator" id="buildResult_BMWICAM-NIGHTLY-57" href="/browse/BMWICAM-NIGHTLY-57" title="Successful"><span class="icon icon-Successful"></span> #57</a>
+
+                </td>
+                <td>
+                    <span id="commits_BMWICAM-NIGHTLY-57" class="commits">Scheduled build</span>
+                </td>
+
+                    <td title="Sun, 8 Jan, 12:03 AM">2 days ago</td>
+
+
+
+                <td>
+Testless build                </td>
+            </tr>
+            <tr>
+                <td class="Successful">
+
+                        <a class="statusIndicator" id="buildResult_BMWICAM-NIGHTLY-56" href="/browse/BMWICAM-NIGHTLY-56" title="Successful"><span class="icon icon-Successful"></span> #56</a>
+
+                </td>
+                <td>
+                    <span id="commits_BMWICAM-NIGHTLY-56" class="commits">Scheduled build</span>
+                </td>
+
+
+                    <td title="Sat, 7 Jan, 12:03 AM">3 days ago</td>
+
+
+
+                <td>
+Testless build                </td>
+            </tr>
+            <tr>
+                <td class="Successful">
+                        <a class="statusIndicator" id="buildResult_BMWICAM-NIGHTLY-55" href="/browse/BMWICAM-NIGHTLY-55" title="Successful"><span class="icon icon-Successful"></span> #55</a>
+
+                </td>
+                <td>
+                    <span id="commits_BMWICAM-NIGHTLY-55" class="commits">Scheduled build</span>
+                </td>
+
+
+                    <td title="Fri, 6 Jan, 12:03 AM">4 days ago</td>
+
+
+                <td>
+Testless build                </td>
+            </tr>
+            <tr>
+                <td class="Successful">
+                        <a class="statusIndicator" id="buildResult_BMWICAM-NIGHTLY-54" href="/browse/BMWICAM-NIGHTLY-54" title="Successful"><span class="icon icon-Successful"></span> #54</a>
+
+                </td>
+
+                <td>
+                    <span id="commits_BMWICAM-NIGHTLY-54" class="commits">Scheduled build</span>
+                </td>
+
+
+                    <td title="Thu, 5 Jan, 12:05 AM">5 days ago</td>
+
+
+
+                <td>
+
+Testless build                </td>
+            </tr>
+            <tr>
+                <td class="Successful">
+                        <a class="statusIndicator" id="buildResult_BMWICAM-NIGHTLY-53" href="/browse/BMWICAM-NIGHTLY-53" title="Successful"><span class="icon icon-Successful"></span> #53</a>
+
+                </td>
+                <td>
+
+                    <span id="commits_BMWICAM-NIGHTLY-53" class="commits">Scheduled build</span>
+                </td>
+
+
+                    <td title="Wed, 4 Jan, 12:05 AM">6 days ago</td>
+
+
+
+                <td>
+Testless build                </td>
+
+            </tr>
+            <tr>
+                <td class="Successful">
+                        <a class="statusIndicator" id="buildResult_BMWICAM-NIGHTLY-52" href="/browse/BMWICAM-NIGHTLY-52" title="Successful"><span class="icon icon-Successful"></span> #52</a>
+
+                </td>
+                <td>
+                    <span id="commits_BMWICAM-NIGHTLY-52" class="commits">Scheduled build</span>
+
+                </td>
+
+
+                    <td title="Tue, 3 Jan, 12:04 AM">1 week ago</td>
+
+
+
+                <td>
+Testless build                </td>
+            </tr>
+            <tr>
+
+                <td class="Successful">
+                        <a class="statusIndicator" id="buildResult_BMWICAM-NIGHTLY-51" href="/browse/BMWICAM-NIGHTLY-51" title="Successful"><span class="icon icon-Successful"></span> #51</a>
+
+                </td>
+                <td>
+                    <span id="commits_BMWICAM-NIGHTLY-51" class="commits">Scheduled build</span>
+                </td>
+
+                    <td title="Mon, 2 Jan, 12:03 AM">1 week ago</td>
+
+
+
+                <td>
+Testless build                </td>
+            </tr>
+            <tr>
+                <td class="Successful">
+
+                        <a class="statusIndicator" id="buildResult_BMWICAM-NIGHTLY-50" href="/browse/BMWICAM-NIGHTLY-50" title="Successful"><span class="icon icon-Successful"></span> #50</a>
+
+                </td>
+                <td>
+                    <span id="commits_BMWICAM-NIGHTLY-50" class="commits">Scheduled build</span>
+                </td>
+
+
+                    <td title="Sun, 1 Jan, 12:03 AM">1 week ago</td>
+
+
+
+                <td>
+Testless build                </td>
+            </tr>
+        </tbody>
+    </table>
+
+                <ul class="history-permalinks">
+                        <li>
+
+                            <a id="buildResult_BMWICAM-NIGHTLY-59" href="/browse/BMWICAM-NIGHTLY/latest">
+<span class="icon icon-permalink"></span>Latest build                            </a>
+                        </li>
+                        <li>
+                            <a id="buildResult_BMWICAM-NIGHTLY-59" href="/browse/BMWICAM-NIGHTLY/latestSuccessful">
+<span class="icon icon-permalink"></span>Last successful build                            </a>
+                        </li>
+                </ul>
+        </div>
+
+    </div>
+    <div id="planStatsSummary">
+            <h2>Plan Statistics</h2>
+ <div id="successRate">
+        <div class="successRatePercentage">
+            <p>
+                <span>100%</span>
+
+Successful            </p>
+        </div> <!-- END #successRatePercentage -->
+        <dl>
+            <dt class="first">
+                    Successful Builds:
+            </dt>
+            <dd class="first">
+                25 / 25
+            </dd>
+
+            <dt>
+                Average Duration:
+            </dt>
+            <dd>
+                4 minutes
+            </dd>
+        </dl>
+</div> <!-- END #successRate -->
+        <div id="planSummaryGraphs">
+                    <h2>Build Duration</h2>
+
+<map id="1821n_map" name="1821n_map">
+<area shape="poly" coords="328,215,327,217,325,218,323,217,322,215,323,213,325,212,327,213,328,215,328,215" title="Build: 58 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-58"/>
+<area shape="poly" coords="316,215,315,217,313,218,311,217,310,215,311,213,313,212,315,213,316,215,316,215" title="Build: 57 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-57"/>
+<area shape="poly" coords="304,215,303,217,301,218,299,217,298,215,299,213,301,212,303,213,304,215,304,215" title="Build: 56 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-56"/>
+<area shape="poly" coords="292,215,292,217,289,218,287,217,286,215,287,213,289,212,292,213,292,215,292,215" title="Build: 55 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-55"/>
+<area shape="poly" coords="281,215,280,217,278,218,276,217,275,215,276,213,278,212,280,213,281,215,281,215" title="Build: 54 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-54"/>
+<area shape="poly" coords="269,215,268,217,266,218,264,217,263,215,264,213,266,212,268,213,269,215,269,215" title="Build: 53 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-53"/>
+<area shape="poly" coords="257,215,256,217,254,218,252,217,251,215,252,213,254,212,256,213,257,215,257,215" title="Build: 52 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-52"/>
+<area shape="poly" coords="245,215,245,217,242,218,240,217,239,215,240,213,242,212,245,213,245,215,245,215" title="Build: 51 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-51"/>
+<area shape="poly" coords="234,215,233,217,231,218,229,217,228,215,229,213,231,212,233,213,234,215,234,215" title="Build: 50 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-50"/>
+<area shape="poly" coords="222,215,221,217,219,218,217,217,216,215,217,213,219,212,221,213,222,215,222,215" title="Build: 49 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-49"/>
+<area shape="poly" coords="210,215,209,217,207,218,205,217,204,215,205,213,207,212,209,213,210,215,210,215" title="Build: 48 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-48"/>
+<area shape="poly" coords="198,215,198,217,195,218,193,217,192,215,193,213,195,212,198,213,198,215,198,215" title="Build: 47 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-47"/>
+<area shape="poly" coords="187,215,186,217,184,218,182,217,181,215,182,213,184,212,186,213,187,215,187,215" title="Build: 46 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-46"/>
+<area shape="poly" coords="175,215,174,217,172,218,170,217,169,215,170,213,172,212,174,213,175,215,175,215" title="Build: 45 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-45"/>
+<area shape="poly" coords="163,215,162,217,160,218,158,217,157,215,158,213,160,212,162,213,163,215,163,215" title="Build: 44 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-44"/>
+<area shape="poly" coords="151,215,151,217,148,218,146,217,145,215,146,213,148,212,151,213,151,215,151,215" title="Build: 43 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-43"/>
+
+<area shape="poly" coords="140,215,139,217,137,218,135,217,134,215,135,213,137,212,139,213,140,215,140,215" title="Build: 42 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-42"/>
+<area shape="poly" coords="128,215,127,217,125,218,123,217,122,215,123,213,125,212,127,213,128,215,128,215" title="Build: 41 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-41"/>
+<area shape="poly" coords="116,215,115,217,113,218,111,217,110,215,111,213,113,212,115,213,116,215,116,215" title="Build: 40 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-40"/>
+<area shape="poly" coords="104,215,104,217,101,218,99,217,98,215,99,213,101,212,104,213,104,215,104,215" title="Build: 39 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-39"/>
+<area shape="poly" coords="93,215,92,217,90,218,88,217,87,215,88,213,90,212,92,213,93,215,93,215" title="Build: 38 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-38"/>
+<area shape="poly" coords="81,215,80,217,78,218,76,217,75,215,76,213,78,212,80,213,81,215,81,215" title="Build: 37 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-37"/>
+<area shape="poly" coords="69,215,68,217,66,218,64,217,63,215,64,213,66,212,68,213,69,215,69,215" title="Build: 36 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-36"/>
+<area shape="poly" coords="57,215,57,217,54,218,52,217,51,215,52,213,54,212,57,213,57,215,57,215" title="Build: 35 - 0/0 failed" alt="" href="/browse/BMWICAM-NIGHTLY-35"/>
+<area shape="rect" coords="331,65,342,168" title="Build: 59 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-59"/>
+<area shape="rect" coords="319,78,330,169" title="Build: 58 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-58"/>
+<area shape="rect" coords="307,75,318,168" title="Build: 57 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-57"/>
+<area shape="rect" coords="295,66,306,169" title="Build: 56 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-56"/>
+<area shape="rect" coords="284,66,295,168" title="Build: 55 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-55"/>
+<area shape="rect" coords="272,13,283,168" title="Build: 54 - Successful - 5 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-54"/>
+<area shape="rect" coords="260,27,271,169" title="Build: 53 - Successful - 5 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-53"/>
+<area shape="rect" coords="248,44,259,169" title="Build: 52 - Successful - 4 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-52"/>
+<area shape="rect" coords="237,74,248,169" title="Build: 51 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-51"/>
+
+<area shape="rect" coords="225,75,236,169" title="Build: 50 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-50"/>
+<area shape="rect" coords="213,67,224,168" title="Build: 49 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-49"/>
+<area shape="rect" coords="201,65,212,168" title="Build: 48 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-48"/>
+<area shape="rect" coords="190,64,201,168" title="Build: 47 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-47"/>
+<area shape="rect" coords="178,75,189,169" title="Build: 46 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-46"/>
+<area shape="rect" coords="166,78,177,168" title="Build: 45 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-45"/>
+<area shape="rect" coords="154,73,165,169" title="Build: 44 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-44"/>
+<area shape="rect" coords="143,75,154,169" title="Build: 43 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-43"/>
+<area shape="rect" coords="131,69,142,168" title="Build: 42 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-42"/>
+<area shape="rect" coords="119,74,130,168" title="Build: 41 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-41"/>
+<area shape="rect" coords="107,67,118,168" title="Build: 40 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-40"/>
+<area shape="rect" coords="96,70,107,169" title="Build: 39 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-39"/>
+<area shape="rect" coords="84,75,95,168" title="Build: 38 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-38"/>
+<area shape="rect" coords="72,78,83,169" title="Build: 37 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-37"/>
+<area shape="rect" coords="60,77,71,168" title="Build: 36 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-36"/>
+<area shape="rect" coords="49,79,60,168" title="Build: 35 - Successful - 3 minutes" alt="" href="/browse/BMWICAM-NIGHTLY-35"/>
+</map>
+
+<img id="combinedByBuildChart" src="/chart?filename=jfreechart-onetime-954396240072191346.png"
+     border=0 height="276" width="345" usemap="#1821n_map"/>
+
+                    <h2>Successful Builds</h2>
+<map id="glZ62_map" name="glZ62_map">
+<area shape="poly" coords="327,233,327,235,324,236,322,235,321,233,322,231,324,230,327,231,327,233,327,233" title="Week 2, 2012: Average build took 3 minutes" alt="" nohref="nohref"/>
+<area shape="poly" coords="267,178,266,180,264,181,262,180,261,178,262,176,264,175,266,176,267,178,267,178" title="Week 1, 2012: Average build took 4 minutes" alt="" nohref="nohref"/>
+<area shape="poly" coords="207,232,206,234,204,235,202,234,201,232,202,229,204,229,206,229,207,232,207,232" title="Week 52, 2011: Average build took 3 minutes" alt="" nohref="nohref"/>
+<area shape="poly" coords="147,236,146,238,144,239,142,238,141,236,142,234,144,233,146,234,147,236,147,236" title="Week 51, 2011: Average build took 3 minutes" alt="" nohref="nohref"/>
+<area shape="poly" coords="87,252,86,254,84,255,81,254,81,252,81,250,84,249,86,250,87,252,87,252" title="Week 50, 2011: Average build took 3 minutes" alt="" nohref="nohref"/>
+<area shape="poly" coords="326,6,324,7,323,6,324,4,326,6,326,6" title="Week 2, 2012: 100.0% of runs successful" alt="" nohref="nohref"/>
+<area shape="poly" coords="266,6,264,7,263,6,264,4,266,6,266,6" title="Week 1, 2012: 100.0% of runs successful" alt="" nohref="nohref"/>
+<area shape="poly" coords="205,6,204,7,202,6,204,4,205,6,205,6" title="Week 52, 2011: 100.0% of runs successful" alt="" nohref="nohref"/>
+<area shape="poly" coords="145,6,144,7,142,6,144,4,145,6,145,6" title="Week 51, 2011: 100.0% of runs successful" alt="" nohref="nohref"/>
+<area shape="poly" coords="85,6,84,7,82,6,84,4,85,6,85,6" title="Week 50, 2011: 100.0% of runs successful" alt="" nohref="nohref"/>
+<area shape="poly" coords="325,6,325,169,295,169,295,6,295,6,325,169,325,6,325,6,325,169,325,169" title="Week 2, 2012: 100.0% of runs successful" alt="" nohref="nohref"/>
+
+<area shape="poly" coords="265,6,265,169,235,169,235,6,235,6,265,169,265,6,295,6,295,169,295,169" title="Week 1, 2012: 100.0% of runs successful" alt="" nohref="nohref"/>
+<area shape="poly" coords="204,6,204,169,174,169,174,6,174,6,204,169,204,6,235,6,235,169,235,169" title="Week 52, 2011: 100.0% of runs successful" alt="" nohref="nohref"/>
+<area shape="poly" coords="144,6,144,169,114,169,114,6,114,6,144,169,144,6,174,6,174,169,174,169" title="Week 51, 2011: 100.0% of runs successful" alt="" nohref="nohref"/>
+<area shape="poly" coords="84,6,84,169,84,169,84,6,84,6,84,169,84,6,114,6,114,169,114,169" title="Week 50, 2011: 100.0% of runs successful" alt="" nohref="nohref"/>
+<area shape="poly" coords="325,6,325,6,295,6,295,6,295,6,325,6,325,6,325,6,325,6,325,6" title="Week 2, 2012: 100.0% of runs successful" alt="" nohref="nohref"/>
+<area shape="poly" coords="265,6,265,6,235,6,235,6,235,6,265,6,265,6,295,6,295,6,295,6" title="Week 1, 2012: 100.0% of runs successful" alt="" nohref="nohref"/>
+<area shape="poly" coords="204,6,204,6,174,6,174,6,174,6,204,6,204,6,235,6,235,6,235,6" title="Week 52, 2011: 100.0% of runs successful" alt="" nohref="nohref"/>
+<area shape="poly" coords="144,6,144,6,114,6,114,6,114,6,144,6,144,6,174,6,174,6,174,6" title="Week 51, 2011: 100.0% of runs successful" alt="" nohref="nohref"/>
+<area shape="poly" coords="84,6,84,6,84,6,84,6,84,6,84,6,84,6,114,6,114,6,114,6" title="Week 50, 2011: 100.0% of runs successful" alt="" nohref="nohref"/>
+</map>
+<img id="combinedByTimeChart" src="/chart?filename=jfreechart-onetime-3712142705010352644.png" border="0" height="276" width="345" usemap="glZ62_map"/>
+
+    
+
+
+		
+
+<form id="setCookie" name="setCookie" onsubmit="return true;" action="/ajax/setCookie.action" method="post"
+ class="aui chartParamForm">
+<div class="form-content-container">
+
+
+<input type="hidden" name="returnUrl" value="/chain/viewChain.action?planKey=BMWICAM-NIGHTLY" id="setCookie_returnUrl"/>
+<input type="hidden" name="cookieValueFieldName" value="groupSuccessFailureChartBy" id="setCookie_cookieValueFieldName"/>
+<input type="hidden" name="cookieKey" value="bamboo.build.groupby.type" id="setCookie_cookieKey"/>
+    Group by:
+<select name="groupSuccessFailureChartBy" id="setCookie_groupSuccessFailureChartBy" class="submitOnChange " 
+>
+    <option value="DAY">DAY</option>
+
+    <option value="WEEK">WEEK</option>
+
+    <option value="MONTH">MONTH</option>
+
+    <option value="AUTO" selected="selected">AUTO</option>
+
+
+</select>
+<input type="hidden" name="selectFields" value="groupSuccessFailureChartBy" />
+
+
+        WEEK
+
+</div><!-- END .form-content-container -->
+</form>
+
+
+
+        </div>
+    </div>
+</div> <!-- END #buildSummary -->
+
+<div class="section">
+    <a href="/rss/createAllBuildsRssFeed.action?feedType=rssAll&amp;buildKey=BMWICAM-NIGHTLY&amp;os_authType=basic"><img
+            src="/images/rss.gif" border="0" hspace="2" align="absmiddle"
+            alt="&ldquo;Foo - Nightly-Build&rdquo; all builds RSS feed"/></a>
+    Feed for <a id="allBuildsPlanRSS"
+                href="/rss/createAllBuildsRssFeed.action?feedType=rssAll&amp;buildKey=BMWICAM-NIGHTLY&amp;os_authType=basic"
+                title="&ldquo;Foo - Nightly-Build&rdquo; all builds RSS feed">all builds</a>
+    or just the <a id="failedBuildsPlanRSS"
+                   href="/rss/createAllBuildsRssFeed.action?feedType=rssFailed&amp;buildKey=BMWICAM-NIGHTLY&amp;os_authType=basic"
+                   title="&ldquo;Foo - Nightly-Build&rdquo; failed builds RSS feed">failed builds</a>.
+
+</div>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+    <a class="hidden" href="/build/admin/edit/editBuildConfiguration.action?buildKey=BMWICAM-NIGHTLY" accesskey="E">Edit Plan</a>
+    </div> <!-- END #nonFooter -->
+    <div id="ft">
+
+        <div id="footer">
+            <p>
+                <a href="http://www.atlassian.com/software/bamboo/">Continuous integration</a> powered by <a href="http://www.atlassian.com/software/bamboo/">Atlassian Bamboo</a> version 3.3.3 build 2719 -
+                <time datetime="2011-11-14T04:39:54">14 Nov 11</time>
+            </p>
+            <ul>
+
+                <li>
+                    <a href="https://support.atlassian.com/secure/CreateIssue.jspa?pid=10060&amp;issuetype=1">Report a problem</a>
+                </li>
+                <li>
+                    <a href="http://jira.atlassian.com/secure/CreateIssue.jspa?pid=11011&amp;issuetype=4">Request a feature</a>
+                </li>
+                <li>
+                    <a href="http://www.atlassian.com/about/contact.jsp">Contact Atlassian</a>
+
+                </li>
+                <li>
+                    <a href="/viewAdministrators.action">Contact Administrators</a>
+                </li>
+            </ul>
+        </div> <!-- END #footer -->
+    </div> <!-- END #ft -->
+
+</div> <!-- END #container -->
+</body>
+</html>

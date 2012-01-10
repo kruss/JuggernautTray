@@ -11,10 +11,11 @@ public interface IBuild extends Comparable<IBuild> {
 	}
 	
 	public BuildMeta getMeta();
-	public BuildStatus getStatus();
-	
+
 	public String getServerUrl();
 	public String getBuildUrl();
-	
-	public void updateStatus(String content) throws Exception;
+
+	public BuildStatus getStatus();
+	public void setStatus(BuildStatus status);	
+	public void parseStatus(String content) throws Exception;
 }

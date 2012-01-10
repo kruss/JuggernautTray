@@ -103,6 +103,6 @@ public class StatusAnalyzerTest {
 		}
 
 		@Override
-		public void updateStatus(String content) throws Exception {}
+		public void parseStatus(String content) throws Exception {}
 	}
 }
